@@ -1,50 +1,3157 @@
-System.register("chunks:///_virtual/App.ts",["./rollupPluginModLoBabelHelpers.js","cc","./env","./CommonPopup.ts","./GameConst.ts","./GameData.ts","./DeckController.ts","./ThemeManagement.ts"],(function(e){"use strict";var t,i,a,n,s,o,r,h,p,g,l,u,c,f,P,m,d,b,v,w;return{setters:[function(e){t=e.applyDecoratedDescriptor,i=e.inheritsLoose,a=e.initializerDefineProperty,n=e.assertThisInitialized},function(e){s=e.cclegacy,o=e._decorator,r=e.JsonAsset,h=e.Node,p=e.Prefab,g=e.log,l=e.view,u=e.screen,c=e.instantiate,f=e.Component},function(e){P=e.DEBUG},function(e){m=e.CommonPopup},function(e){d=e.Constants},function(e){b=e.GameData},function(e){v=e.DeckController},function(e){w=e.ThemeManagement}],execute:function(){var M,z,D,S,y,C,k,R,T,E,G,L,A,N,_;s._RF.push({},"55543hoaohMQaDBh3UQsNVk","App",void 0);var I=o.ccclass,J=o.property,x=d.PageName;e("App",(M=I("App"),z=J({type:r}),D=J({type:w}),S=J({type:h}),y=J({type:h}),C=J({type:m}),k=J([p]),M((E=t((T=function(e){function t(){for(var t,i=arguments.length,s=new Array(i),o=0;o<i;o++)s[o]=arguments[o];return(t=e.call.apply(e,[this].concat(s))||this).IS_DEVELOPMENT=void 0,a(t,"questionJson",E,n(t)),a(t,"themeManagement",G,n(t)),a(t,"pageContainer",L,n(t)),a(t,"screenLocker",A,n(t)),a(t,"popup",N,n(t)),a(t,"pagePrefabs",_,n(t)),t.GameData=void 0,t.DeckController=void 0,t.designResolution={width:0,height:0,ratio:0},t.frameSize={width:0,height:0,ratio:0},t.visiblePages=[],t.pageMap=new Map,t.pageCacheMap=new Map,t.curPage=null,t}i(t,e);var s=t.prototype;return s.onLoad=function(){this.IS_DEVELOPMENT=P,this.IS_DEVELOPMENT&&(g("=======DEBUG MODE======"),globalThis.app=this,globalThis.view=l,globalThis.screenCocos=u),this.GameData=new b,this.DeckController=new v,this.DeckController.addDeck("0",this.questionJson.json),this.screenLocker.active=!1,l.setResizeCallback(this.updatePageSize.bind(this));var e=l.getDesignResolutionSize();this.designResolution.width=e.width,this.designResolution.height=e.height,this.designResolution.ratio=e.width/e.height,this.pageMap.set(x.SelectGamePage,this.pagePrefabs[0]),this.pageMap.set(x.GameInfoPage,this.pagePrefabs[1]),this.pageMap.set(x.CreateRoomPage,this.pagePrefabs[2]),this.pageMap.set(x.JoinRoomPage,this.pagePrefabs[3]),this.pageMap.set(x.PassAndPlayPage,this.pagePrefabs[4]),this.pageMap.set(x.GameIntroPage,this.pagePrefabs[5]),this.pageMap.set(x.SelectDifficultyPage,this.pagePrefabs[6]),this.pageMap.set(x.SelectDeckPage,this.pagePrefabs[7]),this.pageMap.set(x.QuestionPage,this.pagePrefabs[8]),this.openPage(x.SelectGamePage),this.updatePageSize()},s.updatePageSize=function(){g("---- updatePageSize ----");var e=u.windowSize;this.frameSize.width=e.width/u.devicePixelRatio,this.frameSize.height=e.height/u.devicePixelRatio,this.frameSize.ratio=this.frameSize.width/this.frameSize.height;for(var t=this.frameSize.width/this.designResolution.width,i=this.frameSize.height/this.designResolution.height,a=0;a<this.visiblePages.length;a++){this.visiblePages[a].updatePageSize(t,i)}},s.openPage=function(e,t){if(void 0===t&&(t=null),!this.pageCacheMap.has(e)){var i=c(this.pageMap.get(e));this.pageContainer.addChild(i);var a=i.getComponent(e);this.visiblePages.push(a),this.pageCacheMap.set(e,a)}this.curPage&&this.curPage.onHide();var n=this.pageCacheMap.get(e);if(null==n)throw new Error("Next page is null");this.transitPage(this.curPage,n),t&&n.setPayload(t),n.onShow()},s.openPopup=function(e){var t=this;this.screenLocker.active=!0,this.popup.show(e,(function(){t.screenLocker.active=!1}),!0)},s.changeTheme=function(e){this.GameData.setTheme(e),this.themeManagement.changeTheme(e)},s.transitPage=function(e,t){e&&e.hideTransition(),t&&t.showTransition(),this.curPage=t},t}(f)).prototype,"questionJson",[z],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),G=t(T.prototype,"themeManagement",[D],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),L=t(T.prototype,"pageContainer",[S],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),A=t(T.prototype,"screenLocker",[y],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),N=t(T.prototype,"popup",[C],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),_=t(T.prototype,"pagePrefabs",[k],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return[]}}),R=T))||R));s._RF.pop()}}}));
+System.register("chunks:///_virtual/App.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './env', './CommonPopup.ts', './GameConst.ts', './GameData.ts', './DeckController.ts', './ThemeManagement.ts'], function (exports) {
+  'use strict';
 
-System.register("chunks:///_virtual/BotPlayerItem.ts",["./rollupPluginModLoBabelHelpers.js","cc"],(function(t){"use strict";var e,i,n,o,r,a,c,l;return{setters:[function(t){e=t.applyDecoratedDescriptor,i=t.inheritsLoose,n=t.initializerDefineProperty,o=t.assertThisInitialized},function(t){r=t.cclegacy,a=t._decorator,c=t.LabelComponent,l=t.Component}],execute:function(){var s,u,p,h,y;r._RF.push({},"565aaFz8DlM6Jo2/00FtL5Y","BotPlayerItem",void 0);var m=a.ccclass,f=a.property;t("Player",(function(t){this.Name=void 0,this.Name=t})),t("BotPlayerItem",(s=m("BotPlayerItem"),u=f({type:c}),s((y=e((h=function(t){function e(){for(var e,i=arguments.length,r=new Array(i),a=0;a<i;a++)r[a]=arguments[a];return e=t.call.apply(t,[this].concat(r))||this,n(e,"lbName",y,o(e)),e.onKick=void 0,e.Data=void 0,e.Index=void 0,e}i(e,t);var r=e.prototype;return r.setData=function(t,e,i){this.lbName.string=t.Name,this.onKick=i,this.Data=t,this.Index=e},r.onKickClicked=function(){this.onKick&&this.onKick(this)},e}(l)).prototype,"lbName",[u],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),p=h))||p));r._RF.pop()}}}));
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, JsonAsset, Node, Prefab, log, view, screen, instantiate, Component, DEBUG, CommonPopup, Constants, GameData, DeckController, ThemeManagement;
 
-System.register("chunks:///_virtual/ColorPalette.ts",["./rollupPluginModLoBabelHelpers.js","cc","./GameConst.ts"],(function(t){"use strict";var e,o,r,n,i,l,a,p,s,u,c,g,h;return{setters:[function(t){e=t.applyDecoratedDescriptor,o=t.inheritsLoose,r=t.initializerDefineProperty,n=t.assertThisInitialized},function(t){i=t.cclegacy,l=t._decorator,a=t.Enum,p=t.Sprite,s=t.LabelComponent,u=t.find,c=t.Color,g=t.Component},function(t){h=t.Constants}],execute:function(){var C,f,d,m,y;i._RF.push({},"fd7e5WUiNdAh4tRAKaWg2uI","ColorPalette",void 0);var P=l.ccclass,v=l.property,b=h.Theme,L=t("PaletteProperty",a({None:0,BackgroundColor:1,HighlightColor:2,CommonButtonColor:3,DescriptionTextColor:4,QuestionTextColor:5,PopupColor:6,QuestionBgColor:7,IntroBgColor:8,DifficultyBgColor:9}));t("ColorPalette",(C=P("ColorPalette"),f=v({type:L}),C((y=e((m=function(t){function e(){for(var e,o=arguments.length,i=new Array(o),l=0;l<o;l++)i[l]=arguments[l];return e=t.call.apply(t,[this].concat(i))||this,r(e,"paletteProperty",y,n(e)),e.app=void 0,e.targetSprite=null,e.targetLabel=null,e}o(e,t);var i=e.prototype;return i.onLoad=function(){this.targetSprite=this.node.getComponent(p),this.targetLabel=this.node.getComponent(s),this.app=u("App").getComponent("App"),this.updateColor(this.app.GameData.getThemeId())},i.updateColor=function(t){var e=b[t];if(null!==e&&null!=e){var o=L[this.paletteProperty];null!=this.targetSprite&&(this.targetSprite.color=(new c).fromHEX(e[o])),null!=this.targetLabel&&(this.targetLabel.color=(new c).fromHEX(e[o]))}},e}(g)).prototype,"paletteProperty",[f],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return L.None}}),d=m))||d));i._RF.pop()}}}));
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      JsonAsset = module.JsonAsset;
+      Node = module.Node;
+      Prefab = module.Prefab;
+      log = module.log;
+      view = module.view;
+      screen = module.screen;
+      instantiate = module.instantiate;
+      Component = module.Component;
+    }, function (module) {
+      DEBUG = module.DEBUG;
+    }, function (module) {
+      CommonPopup = module.CommonPopup;
+    }, function (module) {
+      Constants = module.Constants;
+    }, function (module) {
+      GameData = module.GameData;
+    }, function (module) {
+      DeckController = module.DeckController;
+    }, function (module) {
+      ThemeManagement = module.ThemeManagement;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
 
-System.register("chunks:///_virtual/CommonPopup.ts",["./rollupPluginModLoBabelHelpers.js","cc"],(function(t){"use strict";var e,i,o,n,l,a,s,r,u,c,p,b,h,d;return{setters:[function(t){e=t.applyDecoratedDescriptor,i=t.inheritsLoose,o=t.initializerDefineProperty,n=t.assertThisInitialized},function(t){l=t.cclegacy,a=t._decorator,s=t.Node,r=t.LabelComponent,u=t.Button,c=t.EditBox,p=t.Tween,b=t.tween,h=t.Vec3,d=t.Component}],execute:function(){var f,B,C,m,y,N,g,x,k,v,E,T,Y,D,w,z,P,H,O;l._RF.push({},"57329/0kUpL8Zk9uajNWSnL","CommonPopup",void 0);var _=a.ccclass,L=a.property;t("CommonPopupData",(function(){this.Title="",this.Description="",this.ButtonYesText="YES",this.ButtonYesCallback=null,this.ButtonNoText="NO",this.ButtonNoCallback=null,this.HasEditBox=!1,this.EditBoxPlaceHolderText=""})),t("CommonPopup",(f=_("CommonPopup"),B=L({type:s}),C=L({type:r}),m=L({type:r}),y=L({type:r}),N=L({type:r}),g=L({type:u}),x=L({type:u}),k=L({type:c}),f((T=e((E=function(t){function e(){for(var e,i=arguments.length,l=new Array(i),a=0;a<i;a++)l[a]=arguments[a];return e=t.call.apply(t,[this].concat(l))||this,o(e,"popupNode",T,n(e)),o(e,"lbTitle",Y,n(e)),o(e,"lbDescription",D,n(e)),o(e,"lbButtonYes",w,n(e)),o(e,"lbButtonNo",z,n(e)),o(e,"btnYes",P,n(e)),o(e,"btnNo",H,n(e)),o(e,"editBox",O,n(e)),e.hasEditBox=void 0,e.btnYesCallback=void 0,e.btnNoCallback=void 0,e.callbackData=void 0,e.onCompleted=void 0,e}i(e,t);var l=e.prototype;return l.onShow=function(){},l.onHide=function(){},l.setPayload=function(t){},l.show=function(t,e,i){void 0===i&&(i=!1),this._setData(t),this.node.active=!0,this.onCompleted=e,i?(p.stopAllByTarget(this.popupNode),b(this.popupNode).set({scale:h.ZERO}).to(.35,{scale:h.ONE},{easing:"quadOut"}).start()):this.node.active=!0},l.hide=function(t){var e=this;void 0===t&&(t=!1),t?(p.stopAllByTarget(this.popupNode),b(this.popupNode).set({scale:h.ONE}).to(.2,{scale:h.ZERO},{easing:"quadOut"}).call((function(){e.node.active=!1})).start()):this.node.active=!1},l.onYesClicked=function(){this.hasEditBox,0!==this.editBox.string.trim().length&&(this.hide(!0),this.btnYesCallback&&this.btnYesCallback(this.callbackData),this.onCompleted&&this.onCompleted())},l.onNoClicked=function(){this.hide(!0),this.btnNoCallback&&this.btnNoCallback(this.callbackData),this.onCompleted&&this.onCompleted()},l.onEditBoxChanged=function(){this.hasEditBox&&(this.callbackData=this.editBox.string.trim())},l._setData=function(t){this.lbTitle.string=t.Title,this.lbDescription.string=t.Description,this.lbButtonYes.string=t.ButtonYesText,this.lbButtonNo.string=t.ButtonNoText,this.btnYes.node.active=!!t.ButtonYesCallback,this.btnYesCallback=t.ButtonYesCallback,this.btnNo.node.active=!!t.ButtonNoCallback,this.btnNoCallback=t.ButtonNoCallback,this.editBox.node.active=t.HasEditBox,this.hasEditBox=t.HasEditBox,t.HasEditBox&&(this.editBox.placeholder=t.EditBoxPlaceHolderText)},l.updatePageSize=function(t,e){},l.showTransition=function(){},l.hideTransition=function(){},l.onBack=function(){},e}(d)).prototype,"popupNode",[B],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),Y=e(E.prototype,"lbTitle",[C],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),D=e(E.prototype,"lbDescription",[m],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),w=e(E.prototype,"lbButtonYes",[y],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),z=e(E.prototype,"lbButtonNo",[N],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),P=e(E.prototype,"btnYes",[g],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),H=e(E.prototype,"btnNo",[x],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),O=e(E.prototype,"editBox",[k],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),v=E))||v));l._RF.pop()}}}));
+      cclegacy._RF.push({}, "55543hoaohMQaDBh3UQsNVk", "App", undefined);
 
-System.register("chunks:///_virtual/CreateRoomPage.ts",["./rollupPluginModLoBabelHelpers.js","cc","./GameConst.ts"],(function(t){"use strict";var e,n,i,o,a,r,p,c,s,u,l,f,y,d;return{setters:[function(t){e=t.applyDecoratedDescriptor,n=t.inheritsLoose,i=t.initializerDefineProperty,o=t.assertThisInitialized},function(t){a=t.cclegacy,r=t._decorator,p=t.UIOpacity,c=t.EditBox,s=t.find,u=t.log,l=t.Tween,f=t.tween,y=t.Component},function(t){d=t.Constants}],execute:function(){var g,h,C,m,P,v,b;a._RF.push({},"332d0NRQQpEbJ9H+zk404T6","CreateRoomPage",void 0);var I=d.PageName,w=r.ccclass,O=r.property;t("CreateRoomPage",(g=w("CreateRoomPage"),h=O(p),C=O({type:c}),g((v=e((P=function(t){function e(){for(var e,n=arguments.length,a=new Array(n),r=0;r<n;r++)a[r]=arguments[r];return e=t.call.apply(t,[this].concat(a))||this,i(e,"uiOpacity",v,o(e)),i(e,"passCodeInput",b,o(e)),e.app=void 0,e}n(e,t);var a=e.prototype;return a.onLoad=function(){this.app=s("App").getComponent("App")},a.onShow=function(){},a.onHide=function(){},a.setPayload=function(t){},a.onPassCodeInputChanged=function(){u("Input "+this.passCodeInput.string)},a.onCreate=function(){},a.showTransition=function(){l.stopAllByTarget(this.uiOpacity),this.node.active=!0,f(this.uiOpacity).set({opacity:0}).to(.3,{opacity:255}).start()},a.hideTransition=function(){var t=this;l.stopAllByTarget(this.uiOpacity),f(this.uiOpacity).set({opacity:255}).to(.3,{opacity:0}).call((function(){t.node.active=!1})).start()},a.updatePageSize=function(t,e){},a.onBack=function(){this.app.openPage(I.GameInfoPage)},e}(y)).prototype,"uiOpacity",[h],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),b=e(P.prototype,"passCodeInput",[C],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),m=P))||m));a._RF.pop()}}}));
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var PageName = Constants.PageName;
+      var App = exports('App', (_dec = ccclass('App'), _dec2 = property({
+        type: JsonAsset
+      }), _dec3 = property({
+        type: ThemeManagement
+      }), _dec4 = property({
+        type: Node
+      }), _dec5 = property({
+        type: Node
+      }), _dec6 = property({
+        type: CommonPopup
+      }), _dec7 = property([Prefab]), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(App, _Component);
 
-System.register("chunks:///_virtual/debug-view-runtime-control.ts",["./rollupPluginModLoBabelHelpers.js","cc"],(function(t){"use strict";var e,o,i,n,s,l,r,a,g,h,c,p,C,d,m,u,T;return{setters:[function(t){e=t.applyDecoratedDescriptor,o=t.inheritsLoose,i=t.initializerDefineProperty,n=t.assertThisInitialized},function(t){s=t.cclegacy,l=t._decorator,r=t.Node,a=t.Canvas,g=t.UITransform,h=t.instantiate,c=t.Label,p=t.Color,C=t.RichText,d=t.Toggle,m=t.Button,u=t.director,T=t.Component}],execute:function(){var L,f,M,b,v,x,E,S,I;s._RF.push({},"b2bd1+njXxJxaFY3ymm06WU","debug-view-runtime-control",void 0);var A=l.ccclass,y=l.property;t("DebugViewRuntimeControl",(L=A("internal.DebugViewRuntimeControl"),f=y(r),M=y(r),b=y(r),L((E=e((x=function(t){function e(){for(var e,o=arguments.length,s=new Array(o),l=0;l<o;l++)s[l]=arguments[l];return e=t.call.apply(t,[this].concat(s))||this,i(e,"compositeModeToggle",E,n(e)),i(e,"singleModeToggle",S,n(e)),i(e,"EnableAllCompositeModeButton",I,n(e)),e._single=0,e.strSingle=["No Single Debug","Vertex Color","Vertex Normal","Vertex Tangent","World Position","Vertex Mirror","Face Side","UV0","UV1","UV Lightmap","Project Depth","Linear Depth","Fragment Normal","Fragment Tangent","Fragment Binormal","Base Color","Diffuse Color","Specular Color","Transparency","Metallic","Roughness","Specular Intensity","IOR","Direct Diffuse","Direct Specular","Direct All","Env Diffuse","Env Specular","Env All","Emissive","Light Map","Shadow","AO","Fresnel","Direct Transmit Diffuse","Direct Transmit Specular","Env Transmit Diffuse","Env Transmit Specular","Transmit All","Direct TRT","Env TRT","TRT All","Fog"],e.strComposite=["Direct Diffuse","Direct Specular","Env Diffuse","Env Specular","Emissive","Light Map","Shadow","AO","Normal Map","Fog","Tone Mapping","Gamma Correction","Fresnel","Transmit Diffuse","Transmit Specular","TRT","TT"],e.strMisc=["CSM Layer Coloration","Lighting With Albedo"],e.compositeModeToggleList=[],e.singleModeToggleList=[],e.miscModeToggleList=[],e.textComponentList=[],e.labelComponentList=[],e.textContentList=[],e.hideButtonLabel=void 0,e._currentColorIndex=0,e.strColor=["<color=#ffffff>","<color=#000000>","<color=#ff0000>","<color=#00ff00>","<color=#0000ff>"],e.color=[p.WHITE,p.BLACK,p.RED,p.GREEN,p.BLUE],e}o(e,t);var s=e.prototype;return s.start=function(){if(this.node.parent.getComponent(a)){var t=this.node.parent.getComponent(g),e=.5*t.width,o=.5*t.height,i=.1*e-e,n=o-.1*o,s=this.node.getChildByName("MiscMode"),l=h(s);l.parent=this.node,l.name="Buttons";var r=h(s);r.parent=this.node,r.name="Titles";for(var u=0;u<2;u++){var T=h(this.EnableAllCompositeModeButton.getChildByName("Label"));T.setPosition(i+(u>0?450:150),n,0),T.setScale(.75,.75,.75),T.parent=r;var L=T.getComponent(c);L.string=u?"----------Composite Mode----------":"----------Single Mode----------",L.color=p.WHITE,L.overflow=0,this.labelComponentList[this.labelComponentList.length]=L}n-=20;for(var f=0,M=0;M<this.strSingle.length;M++,f++){M===this.strSingle.length>>1&&(i+=200,f=0);var b=M?h(this.singleModeToggle):this.singleModeToggle;b.setPosition(i,n-20*f,0),b.setScale(.5,.5,.5),b.parent=this.singleModeToggle.parent;var v=b.getComponentInChildren(C);v.string=this.strSingle[M],this.textComponentList[this.textComponentList.length]=v,this.textContentList[this.textContentList.length]=v.string,b.on(d.EventType.TOGGLE,this.toggleSingleMode,this),this.singleModeToggleList[M]=b}i+=200,this.EnableAllCompositeModeButton.setPosition(i+15,n,0),this.EnableAllCompositeModeButton.setScale(.5,.5,.5),this.EnableAllCompositeModeButton.on(m.EventType.CLICK,this.enableAllCompositeMode,this),this.EnableAllCompositeModeButton.parent=l;var x=this.EnableAllCompositeModeButton.getComponentInChildren(c);this.labelComponentList[this.labelComponentList.length]=x;var E=h(this.EnableAllCompositeModeButton);E.setPosition(i+90,n,0),E.setScale(.5,.5,.5),E.on(m.EventType.CLICK,this.changeTextColor,this),E.parent=l,(x=E.getComponentInChildren(c)).string="TextColor",this.labelComponentList[this.labelComponentList.length]=x;var S=h(this.EnableAllCompositeModeButton);S.setPosition(i+200,n,0),S.setScale(.5,.5,.5),S.on(m.EventType.CLICK,this.hideUI,this),S.parent=this.node.parent,(x=S.getComponentInChildren(c)).string="Hide UI",this.labelComponentList[this.labelComponentList.length]=x,this.hideButtonLabel=x,n-=40;for(var I=0;I<this.strMisc.length;I++){var A=h(this.compositeModeToggle);A.setPosition(i,n-20*I,0),A.setScale(.5,.5,.5),A.parent=s;var y=A.getComponentInChildren(C);y.string=this.strMisc[I],this.textComponentList[this.textComponentList.length]=y,this.textContentList[this.textContentList.length]=y.string,A.getComponent(d).isChecked=!!I,A.on(d.EventType.TOGGLE,I?this.toggleLightingWithAlbedo:this.toggleCSMColoration,this),this.miscModeToggleList[I]=A}n-=150;for(var D=0;D<this.strComposite.length;D++){var B=D?h(this.compositeModeToggle):this.compositeModeToggle;B.setPosition(i,n-20*D,0),B.setScale(.5,.5,.5),B.parent=this.compositeModeToggle.parent;var w=B.getComponentInChildren(C);w.string=this.strComposite[D],this.textComponentList[this.textComponentList.length]=w,this.textContentList[this.textContentList.length]=w.string,B.on(d.EventType.TOGGLE,this.toggleCompositeMode,this),this.compositeModeToggleList[D]=B}}else console.error("debug-view-runtime-control should be child of Canvas")},s.isTextMatched=function(t,e){var o=new String(t),i=o.search(">");return-1===i?t===e:(o=(o=o.substr(i+1)).substr(0,o.search("<")))===e},s.toggleSingleMode=function(t){for(var e=u.root.debugView,o=t.getComponentInChildren(C),i=0;i<this.strSingle.length;i++)this.isTextMatched(o.string,this.strSingle[i])&&(e.singleMode=i)},s.toggleCompositeMode=function(t){for(var e=u.root.debugView,o=t.getComponentInChildren(C),i=0;i<this.strComposite.length;i++)this.isTextMatched(o.string,this.strComposite[i])&&e.enableCompositeMode(i,t.isChecked)},s.toggleLightingWithAlbedo=function(t){u.root.debugView.lightingWithAlbedo=t.isChecked},s.toggleCSMColoration=function(t){u.root.debugView.csmLayerColoration=t.isChecked},s.enableAllCompositeMode=function(t){var e=u.root.debugView;e.enableAllCompositeMode(!0);for(var o=0;o<this.compositeModeToggleList.length;o++){this.compositeModeToggleList[o].getComponent(d).isChecked=!0}var i=this.miscModeToggleList[0].getComponent(d);i.isChecked=!1,e.csmLayerColoration=!1,(i=this.miscModeToggleList[1].getComponent(d)).isChecked=!0,e.lightingWithAlbedo=!0},s.hideUI=function(t){var e=this.node.getChildByName("Titles"),o=!e.active;this.singleModeToggleList[0].parent.active=o,this.miscModeToggleList[0].parent.active=o,this.compositeModeToggleList[0].parent.active=o,this.EnableAllCompositeModeButton.parent.active=o,e.active=o,this.hideButtonLabel.string=o?"Hide UI":"Show UI"},s.changeTextColor=function(t){this._currentColorIndex++,this._currentColorIndex>=this.strColor.length&&(this._currentColorIndex=0);for(var e=0;e<this.textComponentList.length;e++)this.textComponentList[e].string=this.strColor[this._currentColorIndex]+this.textContentList[e]+"</color>";for(var o=0;o<this.labelComponentList.length;o++)this.labelComponentList[o].color=this.color[this._currentColorIndex]},s.onLoad=function(){},s.update=function(t){},e}(T)).prototype,"compositeModeToggle",[f],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),S=e(x.prototype,"singleModeToggle",[M],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),I=e(x.prototype,"EnableAllCompositeModeButton",[b],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),v=x))||v));s._RF.pop()}}}));
+        function App() {
+          var _this;
 
-System.register("chunks:///_virtual/DebugView.ts",["./rollupPluginModLoBabelHelpers.js","cc","./Dropdown.ts","./GameConst.ts","./env"],(function(e){"use strict";var t,n,i,o,r,u,l,a,c,p,s;return{setters:[function(e){t=e.applyDecoratedDescriptor,n=e.inheritsLoose,i=e.initializerDefineProperty,o=e.assertThisInitialized},function(e){r=e.cclegacy,u=e._decorator,l=e.Node,a=e.LabelComponent,c=e.Component},function(e){p=e.Dropdown},null,function(e){s=e.DEBUG}],execute:function(){var b,h,f,g,v,w,D,y,m;r._RF.push({},"87f15SKOBFC168PHcqjVl/v","DebugView",void 0);var d=u.ccclass,C=u.property;e("DebugView",(b=d("DebugView"),h=C({type:l}),f=C({type:a}),g=C({type:p}),b((D=t((w=function(e){function t(){for(var t,n=arguments.length,r=new Array(n),u=0;u<n;u++)r[u]=arguments[u];return t=e.call.apply(e,[this].concat(r))||this,i(t,"view",D,o(t)),i(t,"lbDebug",y,o(t)),i(t,"themeDropdown",m,o(t)),t.themeManagement=null,t}n(t,e);var r=t.prototype;return r.onLoad=function(){this.node.active=s},r.onShow=function(){this.view.active=!this.view.active,this.lbDebug.string=this.view.active?"Close":"Debug"},r.onThemeChange=function(e){globalThis.app.changeTheme(e)},t}(c)).prototype,"view",[h],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),y=t(w.prototype,"lbDebug",[f],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),m=t(w.prototype,"themeDropdown",[g],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),v=w))||v));r._RF.pop()}}}));
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
 
-System.register("chunks:///_virtual/DeckController.ts",["cc"],(function(e){"use strict";var t;return{setters:[function(e){t=e.cclegacy}],execute:function(){t._RF.push({},"fad618c61tHZpd5Y9JgNHdt","DeckController",void 0);e("QuestionData",(function(){this.Type=void 0,this.Level=void 0,this.Penalty=void 0,this.English=void 0,this.Japanese=void 0})),e("DeckController",function(){function e(){this.deckMap={}}var t=e.prototype;return t.addDeck=function(e,t){if(this.deckMap[e])return console.warn("The deck "+e+" already existed"),!1;this.deckMap[e]={};for(var n=this.deckMap[e],i=0;i<t.length;i++){var r=t[i];n[""+r.Level]||(n[""+r.Level]=[]),n[""+r.Level].push(r)}return!0},t.getQuestions=function(e,t){if(!this.deckMap[e])return[];var n=this.deckMap[e];return n[""+t]?[].concat(n[""+t]):[]},e}());t._RF.pop()}}}));
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+          _this.IS_DEVELOPMENT = void 0;
 
-System.register("chunks:///_virtual/DeckItem.ts",["./rollupPluginModLoBabelHelpers.js","cc"],(function(e){"use strict";var t,i,n,r,o,c,l,a,s;return{setters:[function(e){t=e.applyDecoratedDescriptor,i=e.inheritsLoose,n=e.initializerDefineProperty,r=e.assertThisInitialized},function(e){o=e.cclegacy,c=e._decorator,l=e.LabelComponent,a=e.Sprite,s=e.Component}],execute:function(){var u,p,f,b,h,d,D,y,k;o._RF.push({},"b6fa7zUM7ZC17Ob7MJGK8qT","DeckItem",void 0);var v=c.ccclass,m=c.property;e("Deck",(function(e,t){this.Title=void 0,this.Description=void 0,this.Title=e,this.Description=t})),e("DeckItem",(u=v("DeckItem"),p=m({type:l}),f=m({type:l}),b=m({type:a}),u((D=t((d=function(e){function t(){for(var t,i=arguments.length,o=new Array(i),c=0;c<i;c++)o[c]=arguments[c];return t=e.call.apply(e,[this].concat(o))||this,n(t,"lbTitle",D,r(t)),n(t,"lbDescription",y,r(t)),n(t,"deckIcon",k,r(t)),t.onClick=void 0,t.Data=void 0,t.Index=void 0,t}i(t,e);var o=t.prototype;return o.setData=function(e,t,i){this.onClick=i,this.Data=e,this.Index=t},o.onClicked=function(){this.onClick&&this.onClick(this)},t}(s)).prototype,"lbTitle",[p],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),y=t(d.prototype,"lbDescription",[f],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),k=t(d.prototype,"deckIcon",[b],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),h=d))||h));o._RF.pop()}}}));
+          _initializerDefineProperty(_this, "questionJson", _descriptor, _assertThisInitialized(_this));
 
-System.register("chunks:///_virtual/Dropdown.ts",["./rollupPluginModLoBabelHelpers.js","cc","./DropdownOption.ts"],(function(t){"use strict";var n,i,o,e,r,a,p,l,c,u,s,h;return{setters:[function(t){n=t.applyDecoratedDescriptor,i=t.inheritsLoose,o=t.initializerDefineProperty,e=t.assertThisInitialized},function(t){r=t.cclegacy,a=t._decorator,p=t.Node,l=t.Prefab,c=t.LabelComponent,u=t.instantiate,s=t.Component},function(t){h=t.DropdownOption}],execute:function(){var f,d,m,w,y,b,g,C,v,D,O;r._RF.push({},"6cd5aujHmFETpy2UreEX4Dv","Dropdown",void 0);var z=a.ccclass,N=a.property;t("Dropdown",(f=z("Dropdown"),d=N({type:p}),m=N({type:l}),w=N({type:p}),y=N({type:c}),f((C=n((g=function(t){function n(){for(var n,i=arguments.length,r=new Array(i),a=0;a<i;a++)r[a]=arguments[a];return n=t.call.apply(t,[this].concat(r))||this,o(n,"optionView",C,e(n)),o(n,"optionTemplate",v,e(n)),o(n,"optionContainer",D,e(n)),o(n,"curOptionName",O,e(n)),n.onChangeOption=null,n}i(n,t);var r=n.prototype;return r.init=function(t,n){this.curOptionName.string=t[0].name,this.onChangeOption=n;for(var i=0;i<t.length;i++){var o=t[i],e=u(this.optionTemplate);this.optionContainer.addChild(e),e.getComponent(h).setData(o,this.onOptionClick.bind(this))}},r.onClick=function(){this.optionView.active=!this.optionView.active},r.onOptionClick=function(t){this.optionView.active=!1,this.curOptionName.string=t.name,this.onChangeOption&&this.onChangeOption(t.id)},n}(s)).prototype,"optionView",[d],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),v=n(g.prototype,"optionTemplate",[m],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),D=n(g.prototype,"optionContainer",[w],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),O=n(g.prototype,"curOptionName",[y],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),b=g))||b)),t("DropdownItemData",(function(t,n){this.name="Option",this.id="",this.id=t,this.name=n}));r._RF.pop()}}}));
+          _initializerDefineProperty(_this, "themeManagement", _descriptor2, _assertThisInitialized(_this));
 
-System.register("chunks:///_virtual/DropdownOption.ts",["./rollupPluginModLoBabelHelpers.js","cc"],(function(t){"use strict";var n,o,e,i,r,a,l,c,p,u;return{setters:[function(t){n=t.applyDecoratedDescriptor,o=t.inheritsLoose,e=t.initializerDefineProperty,i=t.assertThisInitialized},function(t){r=t.cclegacy,a=t._decorator,l=t.LabelComponent,c=t.Button,p=t.Node,u=t.Component}],execute:function(){var s,h,b,d,f,y,m;r._RF.push({},"8e4d8hkWUxPPonmWogRK078","DropdownOption",void 0);var g=a.ccclass,k=a.property;t("DropdownOption",(s=g("DropdownOption"),h=k({type:l}),b=k({type:c}),s((y=n((f=function(t){function n(){for(var n,o=arguments.length,r=new Array(o),a=0;a<o;a++)r[a]=arguments[a];return n=t.call.apply(t,[this].concat(r))||this,e(n,"optionName",y,i(n)),e(n,"button",m,i(n)),n.callback=null,n.data=null,n}o(n,t);var r=n.prototype;return r.setData=function(t,n){this.data=t,this.optionName.string=t.name,this.callback=n,this.button.node.on(p.EventType.TOUCH_START,this.onClick.bind(this))},r.onClick=function(){this.callback&&this.callback(this.data)},n}(u)).prototype,"optionName",[h],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),m=n(f.prototype,"button",[b],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),d=f))||d));r._RF.pop()}}}));
+          _initializerDefineProperty(_this, "pageContainer", _descriptor3, _assertThisInitialized(_this));
 
-System.register("chunks:///_virtual/GameConst.ts",["cc"],(function(o){"use strict";var e;return{setters:[function(o){e=o.cclegacy}],execute:function(){e._RF.push({},"711241GI0lEFojizhc9aDNo","GameConst",void 0);o("Constants",{PageName:{SelectGamePage:"SelectGamePage",GameInfoPage:"GameInfoPage",CreateRoomPage:"CreateRoomPage",JoinRoomPage:"JoinRoomPage",PassAndPlayPage:"PassAndPlayPage",GameIntroPage:"GameIntroPage",SelectDifficultyPage:"SelectDifficultyPage",SelectDeckPage:"SelectDeckPage",QuestionPage:"QuestionPage"},GamePlaySetting:{MaxPlayer:8},Theme:{0:{Name:"Green",BackgroundColor:"#D9D9D9",HighlightColor:"#97B952",CommonButtonColor:"#FFFFFF",DescriptionTextColor:"#000000",QuestionTextColor:"#FFFFFF",PopupColor:"#97B952",QuestionBgColor:"#97B952",IntroBgColor:"#D9D9D9",DifficultyBgColor:"#FFFFFF"},1:{Name:"Blue",BackgroundColor:"#71A1D1",HighlightColor:"#FABD42",CommonButtonColor:"#F7F4ED",DescriptionTextColor:"#FFFFFF",QuestionTextColor:"#000000",PopupColor:"#71A1D1",QuestionBgColor:"#F7F4ED",IntroBgColor:"#F7F4ED",DifficultyBgColor:"#F7F4ED"}}});e._RF.pop()}}}));
+          _initializerDefineProperty(_this, "screenLocker", _descriptor4, _assertThisInitialized(_this));
 
-System.register("chunks:///_virtual/GameData.ts",["cc"],(function(t){"use strict";var e;return{setters:[function(t){e=t.cclegacy}],execute:function(){e._RF.push({},"1f7cbgDowlLT5HMVONqDL/3","GameData",void 0);var a=function(){this.PlayerName=void 0,this.ThemeId="0"};t("GameData",function(){function t(){this.transientData=void 0,this.persistentData=void 0,this.transientData=new a}var e=t.prototype;return e.getPlayerName=function(){return this.transientData.PlayerName},e.getThemeId=function(){return this.transientData.ThemeId},e.setPlayerName=function(t){this.transientData.PlayerName=t},e.setTheme=function(t){this.transientData.ThemeId=t},t}());e._RF.pop()}}}));
+          _initializerDefineProperty(_this, "popup", _descriptor5, _assertThisInitialized(_this));
 
-System.register("chunks:///_virtual/GameInfoPage.ts",["./rollupPluginModLoBabelHelpers.js","cc","./GameConst.ts"],(function(t){"use strict";var e,n,i,a,o,c,s,p,r,u,l,f;return{setters:[function(t){e=t.applyDecoratedDescriptor,n=t.inheritsLoose,i=t.initializerDefineProperty,a=t.assertThisInitialized},function(t){o=t.cclegacy,c=t._decorator,s=t.UIOpacity,p=t.find,r=t.Tween,u=t.tween,l=t.Component},function(t){f=t.Constants}],execute:function(){var g,y,h,P,d;o._RF.push({},"e31ee8sJSxPzqnkM/F9I6so","GameInfoPage",void 0);var m=f.PageName,v=c.ccclass,I=c.property;t("GameInfoPage",(g=v("GameInfoPage"),y=I(s),g((d=e((P=function(t){function e(){for(var e,n=arguments.length,o=new Array(n),c=0;c<n;c++)o[c]=arguments[c];return e=t.call.apply(t,[this].concat(o))||this,i(e,"uiOpacity",d,a(e)),e.app=void 0,e.gameId=void 0,e}n(e,t);var o=e.prototype;return o.onLoad=function(){this.app=p("App").getComponent("App")},o.onShow=function(){},o.onHide=function(){},o.setPayload=function(t){this.gameId=t},o.start=function(){},o.onCreate=function(){this.app.openPage(m.CreateRoomPage)},o.onJoin=function(){this.app.openPage(m.JoinRoomPage)},o.onPassAndPLay=function(){this.app.openPage(m.PassAndPlayPage,this.gameId)},o.showTransition=function(){r.stopAllByTarget(this.uiOpacity),this.node.active=!0,u(this.uiOpacity).set({opacity:0}).to(.3,{opacity:255}).start()},o.hideTransition=function(){var t=this;r.stopAllByTarget(this.uiOpacity),u(this.uiOpacity).set({opacity:255}).to(.3,{opacity:0}).call((function(){t.node.active=!1})).start()},o.updatePageSize=function(t,e){},o.onBack=function(){this.app.openPage(m.SelectGamePage)},e}(l)).prototype,"uiOpacity",[y],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),h=P))||h));o._RF.pop()}}}));
+          _initializerDefineProperty(_this, "pagePrefabs", _descriptor6, _assertThisInitialized(_this));
 
-System.register("chunks:///_virtual/GameIntroPage.ts",["./rollupPluginModLoBabelHelpers.js","cc","./GameConst.ts","./CommonPopup.ts"],(function(t){"use strict";var e,n,o,i,a,c,p,r,u,s,l,f,y;return{setters:[function(t){e=t.applyDecoratedDescriptor,n=t.inheritsLoose,o=t.initializerDefineProperty,i=t.assertThisInitialized},function(t){a=t.cclegacy,c=t._decorator,p=t.UIOpacity,r=t.find,u=t.Tween,s=t.tween,l=t.Component},function(t){f=t.Constants},function(t){y=t.CommonPopupData}],execute:function(){var h,g,m,d,P;a._RF.push({},"90d0epMVfdFt6aJOp8zhuUq","GameIntroPage",void 0);var v=f.PageName,C=c.ccclass,O=c.property;t("GameIntroPage",(h=C("GameIntroPage"),g=O(p),h((P=e((d=function(t){function e(){for(var e,n=arguments.length,a=new Array(n),c=0;c<n;c++)a[c]=arguments[c];return e=t.call.apply(t,[this].concat(a))||this,o(e,"uiOpacity",P,i(e)),e.app=void 0,e}n(e,t);var a=e.prototype;return a.onLoad=function(){this.app=r("App").getComponent("App")},a.onShow=function(){},a.onHide=function(){},a.setPayload=function(t){},a.onStartGame=function(){this.app.openPage(v.SelectDifficultyPage)},a.showTransition=function(){u.stopAllByTarget(this.uiOpacity),this.node.active=!0,s(this.uiOpacity).set({opacity:0}).to(.3,{opacity:255}).start()},a.hideTransition=function(){var t=this;u.stopAllByTarget(this.uiOpacity),s(this.uiOpacity).set({opacity:255}).to(.3,{opacity:0}).call((function(){t.node.active=!1})).start()},a.updatePageSize=function(t,e){},a.onBack=function(){var t=this,e=new y;e.Description="If you exit the game, the game room will be terminated",e.ButtonYesText="OKAY",e.ButtonYesCallback=function(){return t.app.openPage(v.SelectGamePage)},e.ButtonNoText="CANCEL",e.ButtonNoCallback=function(){},this.app.openPopup(e)},e}(l)).prototype,"uiOpacity",[g],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),m=d))||m));a._RF.pop()}}}));
+          _this.GameData = void 0;
+          _this.DeckController = void 0;
+          _this.designResolution = {
+            width: 0,
+            height: 0,
+            ratio: 0
+          };
+          _this.frameSize = {
+            width: 0,
+            height: 0,
+            ratio: 0
+          };
+          _this.visiblePages = [];
+          _this.pageMap = new Map();
+          _this.pageCacheMap = new Map();
+          _this.curPage = null;
+          return _this;
+        }
 
-System.register("chunks:///_virtual/GameItem.ts",["./rollupPluginModLoBabelHelpers.js","cc"],(function(t){"use strict";var i,e,r,o,n,a,l,s,c,h,u,p,d,b;return{setters:[function(t){i=t.applyDecoratedDescriptor,e=t.inheritsLoose,r=t.initializerDefineProperty,o=t.assertThisInitialized},function(t){n=t.cclegacy,a=t._decorator,l=t.math,s=t.UITransform,c=t.LabelComponent,h=t.Sprite,u=t.Color,p=t.Tween,d=t.tween,b=t.Component}],execute:function(){var m,f,g,D,w,y,k,T,I,S,v,H,z,B,G;n._RF.push({},"89bd6sG8qRLU5UORfWtMTIX","GameItem",void 0);var C=a.ccclass,E=a.property,L=l.lerp;t("GameItem",(m=C("GameItem"),f=E({type:s}),g=E({type:c}),D=E({type:c}),w=E({type:h}),y=E({type:h}),k=E({type:h}),m((S=i((I=function(t){function i(){for(var i,e=arguments.length,n=new Array(e),a=0;a<e;a++)n[a]=arguments[a];return i=t.call.apply(t,[this].concat(n))||this,r(i,"itemTransform",S,o(i)),r(i,"lbName",v,o(i)),r(i,"lbDescription",H,o(i)),r(i,"background",z,o(i)),r(i,"iconGame",B,o(i)),r(i,"iconHeart",G,o(i)),i.isShowDetail=!1,i.data=null,i.callback=null,i.index=null,i}e(i,t);var n=i.prototype;return n.setInfo=function(t,i,e){void 0===e&&(e=null),i={id:"doanddrink"+t,name:"DO OR DRINK "+t,description:"Do the dare on the card or take a drink. If you do the dare, you get to take the card",shortDescription:"Do the dare on the card or take a drink"},this.data=i,this.isShowDetail=!1,this.callback=e,this.index=t,this.lbName.string=this.data.name},n.showDetail=function(t,i){var e=this;if(void 0===i&&(i=!1),this.isShowDetail=t,this.lbDescription.string=this.isShowDetail?this.data.description:this.data.shortDescription,this.iconHeart.color=this.isShowDetail?u.WHITE:u.BLACK,this.lbName.color=this.isShowDetail?u.WHITE:u.BLACK,this.lbDescription.color=this.isShowDetail?u.WHITE:u.BLACK,this.iconGame.node.active=this.isShowDetail,i){p.stopAllByTarget(this.itemTransform),d(this.itemTransform).to(.4,{height:this.isShowDetail?543:186},{easing:"quadOut"}).start();var r=this.isShowDetail?(new u).fromHEX("#96B952"):u.WHITE,o=this.background.color;p.stopAllByTarget(this.background),d(this.background).to(.4,{},{onUpdate:function(t,i){var n=new u;n.r=L(o.r,r.r,i),n.b=L(o.b,r.b,i),n.g=L(o.g,r.g,i),e.background.color=n}}).start()}else this.itemTransform.height=this.isShowDetail?543:186,this.background.color=this.isShowDetail?(new u).fromHEX("#96B952"):u.WHITE},n.onClicked=function(){this.callback&&this.callback(this.index,this.isShowDetail,this.data.id)},i}(b)).prototype,"itemTransform",[f],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),v=i(I.prototype,"lbName",[g],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),H=i(I.prototype,"lbDescription",[D],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),z=i(I.prototype,"background",[w],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),B=i(I.prototype,"iconGame",[y],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),G=i(I.prototype,"iconHeart",[k],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),T=I))||T));n._RF.pop()}}}));
+        var _proto = App.prototype;
 
-System.register("chunks:///_virtual/JoinRoomPage.ts",["./rollupPluginModLoBabelHelpers.js","cc","./GameConst.ts"],(function(t){"use strict";var n,o,i,e,a,r,u,p,c,s,l,f,y,g;return{setters:[function(t){n=t.applyDecoratedDescriptor,o=t.inheritsLoose,i=t.initializerDefineProperty,e=t.assertThisInitialized},function(t){a=t.cclegacy,r=t._decorator,u=t.UIOpacity,p=t.EditBox,c=t.find,s=t.log,l=t.Tween,f=t.tween,y=t.Component},function(t){g=t.Constants}],execute:function(){var h,m,d,b,P,I,v,C,R;a._RF.push({},"ac17cAh8ZRPNbOy4gVkc7ff","JoinRoomPage",void 0);var w=g.PageName,O=r.ccclass,z=r.property;t("JoinRoomPage",(h=O("JoinRoomPage"),m=z(u),d=z({type:p}),b=z({type:p}),h((v=n((I=function(t){function n(){for(var n,o=arguments.length,a=new Array(o),r=0;r<o;r++)a[r]=arguments[r];return n=t.call.apply(t,[this].concat(a))||this,i(n,"uiOpacity",v,e(n)),i(n,"roomNumberInput",C,e(n)),i(n,"passCodeInput",R,e(n)),n.app=void 0,n}o(n,t);var a=n.prototype;return a.onLoad=function(){this.app=c("App").getComponent("App")},a.onShow=function(){},a.onHide=function(){},a.setPayload=function(t){},a.onRoomNumberInputChanged=function(){s("Room Input "+this.roomNumberInput.string)},a.onPassCodeInputChanged=function(){s("Pass Input "+this.passCodeInput.string)},a.onJoin=function(){},a.showTransition=function(){l.stopAllByTarget(this.uiOpacity),this.node.active=!0,f(this.uiOpacity).set({opacity:0}).to(.3,{opacity:255}).start()},a.hideTransition=function(){var t=this;l.stopAllByTarget(this.uiOpacity),f(this.uiOpacity).set({opacity:255}).to(.3,{opacity:0}).call((function(){t.node.active=!1})).start()},a.updatePageSize=function(t,n){},a.onBack=function(){this.app.openPage(w.GameInfoPage)},n}(y)).prototype,"uiOpacity",[m],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),C=n(I.prototype,"roomNumberInput",[d],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),R=n(I.prototype,"passCodeInput",[b],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),P=I))||P));a._RF.pop()}}}));
+        _proto.onLoad = function onLoad() {
+          this.IS_DEVELOPMENT = DEBUG;
 
-System.register("chunks:///_virtual/main",["./debug-view-runtime-control.ts","./Dropdown.ts","./DropdownOption.ts","./App.ts","./DeckController.ts","./GameConst.ts","./GameData.ts","./GameItem.ts","./SelectGamePage.ts","./CreateRoomPage.ts","./GameInfoPage.ts","./GameIntroPage.ts","./JoinRoomPage.ts","./BotPlayerItem.ts","./PassAndPlayPage.ts","./CommonPopup.ts","./QuestionPage.ts","./DeckItem.ts","./SelectDeckPage.ts","./SelectDifficultyPage.ts","./ColorPalette.ts","./DebugView.ts","./ThemeManagement.ts"],(function(){"use strict";return{setters:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],execute:function(){}}}));
+          if (this.IS_DEVELOPMENT) {
+            log('=======DEBUG MODE======');
+            globalThis.app = this;
+            globalThis.view = view;
+            globalThis.screenCocos = screen;
+          } // init service
 
-System.register("chunks:///_virtual/PassAndPlayPage.ts",["./rollupPluginModLoBabelHelpers.js","cc","./GameConst.ts","./BotPlayerItem.ts"],(function(t){"use strict";var e,a,n,i,r,o,l,s,p,u,c,y,f,d,h,P,m,g,b,v;return{setters:[function(t){e=t.applyDecoratedDescriptor,a=t.inheritsLoose,n=t.initializerDefineProperty,i=t.assertThisInitialized},function(t){r=t.cclegacy,o=t._decorator,l=t.UIOpacity,s=t.LabelComponent,p=t.Prefab,u=t.UITransform,c=t.Node,y=t.find,f=t.instantiate,d=t.Vec3,h=t.Tween,P=t.tween,m=t.Component},function(t){g=t.Constants},function(t){b=t.Player,v=t.BotPlayerItem}],execute:function(){var C,w,A,T,I,z,D,O,B,G,L,N,H;r._RF.push({},"41587rDeZ5FDK53i3ReKOMv","PassAndPlayPage",void 0);var S=g.PageName,_=g.GamePlaySetting,x=o.ccclass,F=o.property;t("PassAndPlayPage",(C=x("PassAndPlayPage"),w=F(l),A=F({type:s}),T=F(p),I=F(u),z=F(c),C((B=e((O=function(t){function e(){for(var e,a=arguments.length,r=new Array(a),o=0;o<a;o++)r[o]=arguments[o];return e=t.call.apply(t,[this].concat(r))||this,n(e,"uiOpacity",B,i(e)),n(e,"lbHostName",G,i(e)),n(e,"playerPrefab",L,i(e)),n(e,"playerContainerTransform",N,i(e)),n(e,"btnAddPlayer",H,i(e)),e.app=void 0,e.gameId=void 0,e.playerCount=0,e.players=[],e}a(e,t);var r=e.prototype;return r.onLoad=function(){this.app=y("App").getComponent("App")},r.onShow=function(){},r.onHide=function(){},r.setPayload=function(t){this.gameId=t},r.start=function(){this.addLocalPlayer()},r.addLocalPlayer=function(){var t=this.app.GameData.getPlayerName();this.lbHostName.string=t,this.players.push(new b(t))},r.addPlayer=function(){if(!(this.playerCount>=_.MaxPlayer)){this.playerCount+=1;var t=f(this.playerPrefab);this.playerContainerTransform.node.addChild(t);var e=t.getComponent(v);e.setData(new b("Player "+this.playerCount),this.playerCount,this.removePlayer.bind(this)),this.players.push(e.Data);this.btnAddPlayer.setPosition(new d(0,-this.playerContainerTransform.height-93))}},r.removePlayer=function(t){this.players.splice(t.Index,1),this.playerCount-=1,t.node.destroy()},r.onStartGame=function(){this.app.openPage(S.GameIntroPage)},r.showTransition=function(){h.stopAllByTarget(this.uiOpacity),this.node.active=!0,P(this.uiOpacity).set({opacity:0}).to(.3,{opacity:255}).start()},r.hideTransition=function(){var t=this;h.stopAllByTarget(this.uiOpacity),P(this.uiOpacity).set({opacity:255}).to(.3,{opacity:0}).call((function(){t.node.active=!1})).start()},r.updatePageSize=function(t,e){},r.onBack=function(){this.app.openPage(S.GameInfoPage)},e}(m)).prototype,"uiOpacity",[w],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),G=e(O.prototype,"lbHostName",[A],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),L=e(O.prototype,"playerPrefab",[T],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),N=e(O.prototype,"playerContainerTransform",[I],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),H=e(O.prototype,"btnAddPlayer",[z],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),D=O))||D));r._RF.pop()}}}));
 
-System.register("chunks:///_virtual/QuestionPage.ts",["./rollupPluginModLoBabelHelpers.js","cc","./GameConst.ts","./CommonPopup.ts"],(function(t){"use strict";var e,n,o,i,a,s,l,u,p,c,r,h,f,y;return{setters:[function(t){e=t.applyDecoratedDescriptor,n=t.inheritsLoose,o=t.initializerDefineProperty,i=t.assertThisInitialized},function(t){a=t.cclegacy,s=t._decorator,l=t.UIOpacity,u=t.LabelComponent,p=t.find,c=t.Tween,r=t.tween,h=t.Component},function(t){f=t.Constants},function(t){y=t.CommonPopupData}],execute:function(){var d,g,P,v,m,Q,b;a._RF.push({},"01a62n2jdVFYJn5TRltWchZ","QuestionPage",void 0);var w=f.PageName,C=s.ccclass,O=s.property;t("QuestionPage",(d=C("QuestionPage"),g=O(l),P=O({type:u}),d((Q=e((m=function(t){function e(){for(var e,n=arguments.length,a=new Array(n),s=0;s<n;s++)a[s]=arguments[s];return e=t.call.apply(t,[this].concat(a))||this,o(e,"uiOpacity",Q,i(e)),o(e,"lbQuestion",b,i(e)),e.app=void 0,e.questionsPool=void 0,e}n(e,t);var a=e.prototype;return a.onLoad=function(){this.app=p("App").getComponent("App")},a.onShow=function(){this.loadQuestion()},a.onHide=function(){},a.setPayload=function(t){console.log("Open deck "+t.deckId+" with level "+t.level),this.questionsPool=this.app.DeckController.getQuestions(t.deckId,t.level)},a.loadQuestion=function(){if(0==this.questionsPool.length)return this.showEndPopup();var t=Math.floor(Math.random()*this.questionsPool.length),e=this.questionsPool[t],n=e.English.replace("$penalty",e.Penalty),o=e.Japanese.replace("$penalty",e.Penalty);this.lbQuestion.string="\n"+n+"\n\n"+o,this.questionsPool.splice(t,1),console.log("Question pool has "+this.questionsPool.length+" questions remaining")},a.showEndPopup=function(){var t=this,e=new y;e.Title="Congratulation",e.Description="You guys already passed all cards",e.ButtonYesText="OKAY",e.ButtonYesCallback=function(){t.app.openPage(w.SelectDifficultyPage)},this.app.openPopup(e)},a.onNextQuestion=function(){this.loadQuestion()},a.showTransition=function(){c.stopAllByTarget(this.uiOpacity),this.node.active=!0,r(this.uiOpacity).set({opacity:0}).to(.3,{opacity:255}).start()},a.hideTransition=function(){var t=this;c.stopAllByTarget(this.uiOpacity),r(this.uiOpacity).set({opacity:255}).to(.3,{opacity:0}).call((function(){t.node.active=!1})).start()},a.updatePageSize=function(t,e){},a.onBack=function(){this.app.openPage(w.SelectDeckPage)},e}(h)).prototype,"uiOpacity",[g],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),b=e(m.prototype,"lbQuestion",[P],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),v=m))||v));a._RF.pop()}}}));
+          this.GameData = new GameData();
+          this.DeckController = new DeckController();
+          this.DeckController.addDeck('0', this.questionJson.json);
+          this.screenLocker.active = false;
+          view.setResizeCallback(this.updatePageSize.bind(this)); // retrieve original canvas design size
 
-System.register("chunks:///_virtual/SelectDeckPage.ts",["./rollupPluginModLoBabelHelpers.js","cc","./GameConst.ts","./DeckItem.ts"],(function(t){"use strict";var e,i,n,a,o,c,r,s,u,l,p,d,f,y,h,g,P;return{setters:[function(t){e=t.applyDecoratedDescriptor,i=t.inheritsLoose,n=t.initializerDefineProperty,a=t.assertThisInitialized},function(t){o=t.cclegacy,c=t._decorator,r=t.UIOpacity,s=t.Prefab,u=t.Node,l=t.find,p=t.instantiate,d=t.Tween,f=t.tween,y=t.Component},function(t){h=t.Constants},function(t){g=t.DeckItem,P=t.Deck}],execute:function(){var b,k,m,v,D,w,C,O,S;o._RF.push({},"187d0QrbdxDRa1Ofct6ZUoQ","SelectDeckPage",void 0);var q=c.ccclass,z=c.property,I=h.PageName;t("SelectDeckPage",(b=q("SelectDeckPage"),k=z(r),m=z(s),v=z({type:u}),b((C=e((w=function(t){function e(){for(var e,i=arguments.length,o=new Array(i),c=0;c<i;c++)o[c]=arguments[c];return e=t.call.apply(t,[this].concat(o))||this,n(e,"uiOpacity",C,a(e)),n(e,"deckPrefab",O,a(e)),n(e,"container",S,a(e)),e.app=void 0,e.questionPayload={},e}i(e,t);var o=e.prototype;return o.onLoad=function(){this.app=l("App").getComponent("App")},o.onShow=function(){},o.onHide=function(){},o.setPayload=function(t){this.questionPayload.level=t},o.start=function(){for(var t=new P("BEGINNER","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."),e=0;e<1;e++){var i=p(this.deckPrefab);this.container.addChild(i),i.getComponent(g).setData(t,e,this.onDeckClicked.bind(this))}},o.onDeckClicked=function(){this.questionPayload.deckId="0",this.app.openPage(I.QuestionPage,this.questionPayload)},o.showTransition=function(){d.stopAllByTarget(this.uiOpacity),this.node.active=!0,f(this.uiOpacity).set({opacity:0}).to(.3,{opacity:255}).start()},o.hideTransition=function(){var t=this;d.stopAllByTarget(this.uiOpacity),f(this.uiOpacity).set({opacity:255}).to(.3,{opacity:0}).call((function(){t.node.active=!1})).start()},o.updatePageSize=function(t,e){},o.onBack=function(){this.app.openPage(I.SelectDifficultyPage)},e}(y)).prototype,"uiOpacity",[k],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),O=e(w.prototype,"deckPrefab",[m],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),S=e(w.prototype,"container",[v],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),D=w))||D));o._RF.pop()}}}));
+          var designResolution = view.getDesignResolutionSize();
+          this.designResolution.width = designResolution.width;
+          this.designResolution.height = designResolution.height;
+          this.designResolution.ratio = designResolution.width / designResolution.height; // mapping page
 
-System.register("chunks:///_virtual/SelectDifficultyPage.ts",["./rollupPluginModLoBabelHelpers.js","cc","./GameConst.ts"],(function(t){"use strict";var i,e,n,o,a,c,r,p,s,u,l,f;return{setters:[function(t){i=t.applyDecoratedDescriptor,e=t.inheritsLoose,n=t.initializerDefineProperty,o=t.assertThisInitialized},function(t){a=t.cclegacy,c=t._decorator,r=t.UIOpacity,p=t.find,s=t.Tween,u=t.tween,l=t.Component},function(t){f=t.Constants}],execute:function(){var y,h,g,d,P;a._RF.push({},"b43b6/bpkZHErO+LXCR99tK","SelectDifficultyPage",void 0);var v=f.PageName,D=c.ccclass,S=c.property;t("SelectDifficultyPage",(y=D("SelectDifficultyPage"),h=S(r),y((P=i((d=function(t){function i(){for(var i,e=arguments.length,a=new Array(e),c=0;c<e;c++)a[c]=arguments[c];return i=t.call.apply(t,[this].concat(a))||this,n(i,"uiOpacity",P,o(i)),i.app=void 0,i}e(i,t);var a=i.prototype;return a.onLoad=function(){this.app=p("App").getComponent("App")},a.onShow=function(){},a.onHide=function(){},a.setPayload=function(t){},a.onSelectDificulty=function(t,i){this.app.openPage(v.SelectDeckPage,i)},a.showTransition=function(){s.stopAllByTarget(this.uiOpacity),this.node.active=!0,u(this.uiOpacity).set({opacity:0}).to(.3,{opacity:255}).start()},a.hideTransition=function(){var t=this;s.stopAllByTarget(this.uiOpacity),u(this.uiOpacity).set({opacity:255}).to(.3,{opacity:0}).call((function(){t.node.active=!1})).start()},a.updatePageSize=function(t,i){},a.onBack=function(){this.app.openPage(v.GameIntroPage)},i}(l)).prototype,"uiOpacity",[h],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),g=d))||g));a._RF.pop()}}}));
+          this.pageMap.set(PageName.SelectGamePage, this.pagePrefabs[0]);
+          this.pageMap.set(PageName.GameInfoPage, this.pagePrefabs[1]);
+          this.pageMap.set(PageName.CreateRoomPage, this.pagePrefabs[2]);
+          this.pageMap.set(PageName.JoinRoomPage, this.pagePrefabs[3]);
+          this.pageMap.set(PageName.PassAndPlayPage, this.pagePrefabs[4]);
+          this.pageMap.set(PageName.GameIntroPage, this.pagePrefabs[5]);
+          this.pageMap.set(PageName.SelectDifficultyPage, this.pagePrefabs[6]);
+          this.pageMap.set(PageName.SelectDeckPage, this.pagePrefabs[7]);
+          this.pageMap.set(PageName.QuestionPage, this.pagePrefabs[8]); // open default
 
-System.register("chunks:///_virtual/SelectGamePage.ts",["./rollupPluginModLoBabelHelpers.js","cc","./GameItem.ts","./GameConst.ts","./CommonPopup.ts"],(function(t){"use strict";var e,i,n,a,o,r,c,s,p,u,l,f,m,h,y,d,P;return{setters:[function(t){e=t.applyDecoratedDescriptor,i=t.inheritsLoose,n=t.initializerDefineProperty,a=t.assertThisInitialized},function(t){o=t.cclegacy,r=t._decorator,c=t.UIOpacity,s=t.Prefab,p=t.Node,u=t.find,l=t.instantiate,f=t.Tween,m=t.tween,h=t.Component},function(t){y=t.GameItem},function(t){d=t.Constants},function(t){P=t.CommonPopupData}],execute:function(){var g,b,v,w,C,I,G,T,B;o._RF.push({},"32c7c1/Kx9Dhb/NlaSM4PXZ","SelectGamePage",void 0);var D=r.ccclass,O=r.property,S=d.PageName;t("SelectGamePage",(g=D("SelectGamePage"),b=O(c),v=O(s),w=O({type:p}),g((G=e((I=function(t){function e(){for(var e,i=arguments.length,o=new Array(i),r=0;r<i;r++)o[r]=arguments[r];return e=t.call.apply(t,[this].concat(o))||this,n(e,"uiOpacity",G,a(e)),n(e,"itemPrefab",T,a(e)),n(e,"container",B,a(e)),e.items=[],e.app=void 0,e}i(e,t);var o=e.prototype;return o.onLoad=function(){this.app=u("App").getComponent("App")},o.onShow=function(){},o.onHide=function(){},o.setPayload=function(t){},o.start=function(){for(var t=0;t<1;t++){var e=l(this.itemPrefab);this.container.addChild(e);var i=e.getComponent(y);i.setInfo(t,null,this.onItemClicked.bind(this)),i.showDetail(0===t,!1),this.items.push(i)}this.showInputNamePrompt()},o.showInputNamePrompt=function(){var t=this,e=new P;e.Title="Input your name",e.HasEditBox=!0,e.EditBoxPlaceHolderText="Enter player name...",e.ButtonYesText="OKAY",e.ButtonYesCallback=function(e){t.app.GameData.setPlayerName(e)},this.app.openPopup(e)},o.onItemClicked=function(t,e,i){if(e)this.app.openPage(S.GameInfoPage,i);else for(var n=0;n<this.items.length;n++)this.items[n].showDetail(n===t,!0)},o.showTransition=function(){f.stopAllByTarget(this.uiOpacity),this.node.active=!0,m(this.uiOpacity).set({opacity:0}).to(.3,{opacity:255}).start()},o.hideTransition=function(){var t=this;f.stopAllByTarget(this.uiOpacity),m(this.uiOpacity).set({opacity:255}).to(.3,{opacity:0}).call((function(){t.node.active=!1})).start()},o.updatePageSize=function(t,e){},o.onBack=function(){},e}(h)).prototype,"uiOpacity",[b],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),T=e(I.prototype,"itemPrefab",[v],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),B=e(I.prototype,"container",[w],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return null}}),C=I))||C));o._RF.pop()}}}));
+          this.openPage(PageName.SelectGamePage);
+          this.updatePageSize();
+        };
 
-System.register("chunks:///_virtual/ThemeManagement.ts",["./rollupPluginModLoBabelHelpers.js","cc","./ColorPalette.ts"],(function(e){"use strict";var t,r,a,n,o,i,c,s,l,u;return{setters:[function(e){t=e.applyDecoratedDescriptor,r=e.inheritsLoose,a=e.createForOfIteratorHelperLoose,n=e.initializerDefineProperty,o=e.assertThisInitialized},function(e){i=e.cclegacy,c=e._decorator,s=e.Node,l=e.Component},function(e){u=e.ColorPalette}],execute:function(){var h,p,g,f,d;i._RF.push({},"89ac7byHXNHW5AZytYO73FD","ThemeManagement",void 0);var v=c.ccclass,y=c.property;e("ThemeManagement",(h=v("ThemeManagement"),p=y([s]),h((d=t((f=function(e){function t(){for(var t,r=arguments.length,a=new Array(r),i=0;i<r;i++)a[i]=arguments[i];return t=e.call.apply(e,[this].concat(a))||this,n(t,"targets",d,o(t)),t}r(t,e);var i=t.prototype;return i.changeTheme=function(e){for(var t=0;t<this.targets.length;t++){var r=this.targets[t];this.iterateNodeHierarchy(r,e)}},i.iterateNodeHierarchy=function(e,t){var r=e.children;this.updateTarget(e,t);for(var n,o=a(r);!(n=o()).done;){var i=n.value;this.iterateNodeHierarchy(i,t)}},i.updateTarget=function(e,t){var r=e.getComponent(u);null!==r&&r.updateColor(t)},t}(l)).prototype,"targets",[p],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return[]}}),g=f))||g));i._RF.pop()}}}));
+        _proto.updatePageSize = function updatePageSize() {
+          log('---- updatePageSize ----');
+          var windowSize = screen.windowSize;
+          this.frameSize.width = windowSize.width / screen.devicePixelRatio;
+          this.frameSize.height = windowSize.height / screen.devicePixelRatio;
+          this.frameSize.ratio = this.frameSize.width / this.frameSize.height;
+          var scalerX = this.frameSize.width / this.designResolution.width;
+          var scalerY = this.frameSize.height / this.designResolution.height;
+
+          for (var index = 0; index < this.visiblePages.length; index++) {
+            var page = this.visiblePages[index];
+            page.updatePageSize(scalerX, scalerY);
+          }
+        };
+
+        _proto.openPage = function openPage(pageName, payload) {
+          if (payload === void 0) {
+            payload = null;
+          }
+
+          if (!this.pageCacheMap.has(pageName)) {
+            var node = instantiate(this.pageMap.get(pageName));
+            this.pageContainer.addChild(node);
+            var pageCtrl = node.getComponent(pageName);
+            this.visiblePages.push(pageCtrl);
+            this.pageCacheMap.set(pageName, pageCtrl);
+          }
+
+          if (this.curPage) this.curPage.onHide();
+          var nextPage = this.pageCacheMap.get(pageName);
+          if (nextPage == null) throw new Error('Next page is null');
+          this.transitPage(this.curPage, nextPage);
+          if (payload) nextPage.setPayload(payload);
+          nextPage.onShow();
+        };
+
+        _proto.openPopup = function openPopup(data) {
+          var _this2 = this;
+
+          this.screenLocker.active = true;
+          this.popup.show(data, function () {
+            _this2.screenLocker.active = false;
+          }, true);
+        };
+
+        _proto.changeTheme = function changeTheme(themId) {
+          this.GameData.setTheme(themId);
+          this.themeManagement.changeTheme(themId);
+        };
+
+        _proto.transitPage = function transitPage(from, to) {
+          from && from.hideTransition();
+          to && to.showTransition();
+          this.curPage = to;
+        };
+
+        return App;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "questionJson", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "themeManagement", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "pageContainer", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "screenLocker", [_dec5], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "popup", [_dec6], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, "pagePrefabs", [_dec7], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return [];
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/BotPlayerItem.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, LabelComponent, Component;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      LabelComponent = module.LabelComponent;
+      Component = module.Component;
+    }],
+    execute: function () {
+      var _dec, _dec2, _class, _class2, _descriptor;
+
+      cclegacy._RF.push({}, "565aaFz8DlM6Jo2/00FtL5Y", "BotPlayerItem", undefined);
+
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var Player = exports('Player', function Player(name) {
+        this.Name = void 0;
+        this.Name = name;
+      });
+      var BotPlayerItem = exports('BotPlayerItem', (_dec = ccclass('BotPlayerItem'), _dec2 = property({
+        type: LabelComponent
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(BotPlayerItem, _Component);
+
+        function BotPlayerItem() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "lbName", _descriptor, _assertThisInitialized(_this));
+
+          _this.onKick = void 0;
+          _this.Data = void 0;
+          _this.Index = void 0;
+          return _this;
+        }
+
+        var _proto = BotPlayerItem.prototype;
+
+        _proto.setData = function setData(data, index, onKick) {
+          this.lbName.string = data.Name;
+          this.onKick = onKick;
+          this.Data = data;
+          this.Index = index;
+        };
+
+        _proto.onKickClicked = function onKickClicked() {
+          this.onKick && this.onKick(this);
+        };
+
+        return BotPlayerItem;
+      }(Component), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "lbName", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/ColorPalette.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GameConst.ts'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Enum, Sprite, LabelComponent, find, Color, Component, Constants;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      Enum = module.Enum;
+      Sprite = module.Sprite;
+      LabelComponent = module.LabelComponent;
+      find = module.find;
+      Color = module.Color;
+      Component = module.Component;
+    }, function (module) {
+      Constants = module.Constants;
+    }],
+    execute: function () {
+      var _dec, _dec2, _class, _class2, _descriptor;
+
+      cclegacy._RF.push({}, "fd7e5WUiNdAh4tRAKaWg2uI", "ColorPalette", undefined);
+
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var Theme = Constants.Theme;
+      var PaletteProperty = exports('PaletteProperty', Enum({
+        None: 0,
+        BackgroundColor: 1,
+        HighlightColor: 2,
+        CommonButtonColor: 3,
+        DescriptionTextColor: 4,
+        QuestionTextColor: 5,
+        PopupColor: 6,
+        QuestionBgColor: 7,
+        IntroBgColor: 8,
+        DifficultyBgColor: 9
+      }));
+      var ColorPalette = exports('ColorPalette', (_dec = ccclass('ColorPalette'), _dec2 = property({
+        type: PaletteProperty
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(ColorPalette, _Component);
+
+        function ColorPalette() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "paletteProperty", _descriptor, _assertThisInitialized(_this));
+
+          _this.app = void 0;
+          _this.targetSprite = null;
+          _this.targetLabel = null;
+          return _this;
+        }
+
+        var _proto = ColorPalette.prototype;
+
+        _proto.onLoad = function onLoad() {
+          this.targetSprite = this.node.getComponent(Sprite);
+          this.targetLabel = this.node.getComponent(LabelComponent);
+          this.app = find('App').getComponent('App');
+          this.updateColor(this.app.GameData.getThemeId());
+        };
+
+        _proto.updateColor = function updateColor(themeId) {
+          var theme = Theme[themeId];
+          if (theme === null || theme == undefined) return;
+          var propertyKey = PaletteProperty[this.paletteProperty];
+          if (this.targetSprite != null) this.targetSprite.color = new Color().fromHEX(theme[propertyKey]);
+          if (this.targetLabel != null) this.targetLabel.color = new Color().fromHEX(theme[propertyKey]);
+        };
+
+        return ColorPalette;
+      }(Component), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "paletteProperty", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return PaletteProperty.None;
+        }
+      }), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/CommonPopup.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Node, LabelComponent, Button, EditBox, Tween, tween, Vec3, Component;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      Node = module.Node;
+      LabelComponent = module.LabelComponent;
+      Button = module.Button;
+      EditBox = module.EditBox;
+      Tween = module.Tween;
+      tween = module.tween;
+      Vec3 = module.Vec3;
+      Component = module.Component;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
+
+      cclegacy._RF.push({}, "57329/0kUpL8Zk9uajNWSnL", "CommonPopup", undefined);
+
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var CommonPopupData = exports('CommonPopupData', function CommonPopupData() {
+        this.Title = '';
+        this.Description = '';
+        this.ButtonYesText = 'YES';
+        this.ButtonYesCallback = null;
+        this.ButtonNoText = 'NO';
+        this.ButtonNoCallback = null;
+        this.HasEditBox = false;
+        this.EditBoxPlaceHolderText = '';
+      });
+      var CommonPopup = exports('CommonPopup', (_dec = ccclass('CommonPopup'), _dec2 = property({
+        type: Node
+      }), _dec3 = property({
+        type: LabelComponent
+      }), _dec4 = property({
+        type: LabelComponent
+      }), _dec5 = property({
+        type: LabelComponent
+      }), _dec6 = property({
+        type: LabelComponent
+      }), _dec7 = property({
+        type: Button
+      }), _dec8 = property({
+        type: Button
+      }), _dec9 = property({
+        type: EditBox
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(CommonPopup, _Component);
+
+        function CommonPopup() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "popupNode", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbTitle", _descriptor2, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbDescription", _descriptor3, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbButtonYes", _descriptor4, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbButtonNo", _descriptor5, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "btnYes", _descriptor6, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "btnNo", _descriptor7, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "editBox", _descriptor8, _assertThisInitialized(_this));
+
+          _this.hasEditBox = void 0;
+          _this.btnYesCallback = void 0;
+          _this.btnNoCallback = void 0;
+          _this.callbackData = void 0;
+          _this.onCompleted = void 0;
+          return _this;
+        }
+
+        var _proto = CommonPopup.prototype;
+
+        _proto.onShow = function onShow() {};
+
+        _proto.onHide = function onHide() {};
+
+        _proto.setPayload = function setPayload(data) {};
+
+        _proto.show = function show(data, onCompleted, hasAnim) {
+          if (hasAnim === void 0) {
+            hasAnim = false;
+          }
+
+          this._setData(data);
+
+          this.node.active = true;
+          this.onCompleted = onCompleted;
+
+          if (hasAnim) {
+            Tween.stopAllByTarget(this.popupNode);
+            tween(this.popupNode).set({
+              scale: Vec3.ZERO
+            }).to(0.35, {
+              scale: Vec3.ONE
+            }, {
+              easing: 'quadOut'
+            }).start();
+          } else {
+            this.node.active = true;
+          }
+        };
+
+        _proto.hide = function hide(hasAnim) {
+          var _this2 = this;
+
+          if (hasAnim === void 0) {
+            hasAnim = false;
+          }
+
+          if (hasAnim) {
+            Tween.stopAllByTarget(this.popupNode);
+            tween(this.popupNode).set({
+              scale: Vec3.ONE
+            }).to(0.2, {
+              scale: Vec3.ZERO
+            }, {
+              easing: 'quadOut'
+            }).call(function () {
+              _this2.node.active = false;
+            }).start();
+          } else {
+            this.node.active = false;
+          }
+        };
+
+        _proto.onYesClicked = function onYesClicked() {
+          if (this.hasEditBox && this, this.editBox.string.trim().length === 0) return;
+          this.hide(true);
+          this.btnYesCallback && this.btnYesCallback(this.callbackData);
+          this.onCompleted && this.onCompleted();
+        };
+
+        _proto.onNoClicked = function onNoClicked() {
+          this.hide(true);
+          this.btnNoCallback && this.btnNoCallback(this.callbackData);
+          this.onCompleted && this.onCompleted();
+        };
+
+        _proto.onEditBoxChanged = function onEditBoxChanged() {
+          if (this.hasEditBox) {
+            this.callbackData = this.editBox.string.trim();
+          }
+        };
+
+        _proto._setData = function _setData(data) {
+          this.lbTitle.string = data.Title;
+          this.lbDescription.string = data.Description;
+          this.lbButtonYes.string = data.ButtonYesText;
+          this.lbButtonNo.string = data.ButtonNoText;
+          this.btnYes.node.active = !!data.ButtonYesCallback;
+          this.btnYesCallback = data.ButtonYesCallback;
+          this.btnNo.node.active = !!data.ButtonNoCallback;
+          this.btnNoCallback = data.ButtonNoCallback;
+          this.editBox.node.active = data.HasEditBox;
+          this.hasEditBox = data.HasEditBox;
+
+          if (data.HasEditBox) {
+            this.editBox.placeholder = data.EditBoxPlaceHolderText;
+          }
+        };
+
+        _proto.updatePageSize = function updatePageSize(scalerX, scalerY) {};
+
+        _proto.showTransition = function showTransition() {};
+
+        _proto.hideTransition = function hideTransition() {};
+
+        _proto.onBack = function onBack() {};
+
+        return CommonPopup;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "popupNode", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "lbTitle", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "lbDescription", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "lbButtonYes", [_dec5], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "lbButtonNo", [_dec6], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, "btnYes", [_dec7], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "btnNo", [_dec8], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, "editBox", [_dec9], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/CreateRoomPage.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GameConst.ts'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, EditBox, find, log, Tween, tween, Component, Constants;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      UIOpacity = module.UIOpacity;
+      EditBox = module.EditBox;
+      find = module.find;
+      log = module.log;
+      Tween = module.Tween;
+      tween = module.tween;
+      Component = module.Component;
+    }, function (module) {
+      Constants = module.Constants;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _class, _class2, _descriptor, _descriptor2;
+
+      cclegacy._RF.push({}, "332d0NRQQpEbJ9H+zk404T6", "CreateRoomPage", undefined);
+
+      var PageName = Constants.PageName;
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var CreateRoomPage = exports('CreateRoomPage', (_dec = ccclass('CreateRoomPage'), _dec2 = property(UIOpacity), _dec3 = property({
+        type: EditBox
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(CreateRoomPage, _Component);
+
+        function CreateRoomPage() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "uiOpacity", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "passCodeInput", _descriptor2, _assertThisInitialized(_this));
+
+          _this.app = void 0;
+          return _this;
+        }
+
+        var _proto = CreateRoomPage.prototype;
+
+        _proto.onLoad = function onLoad() {
+          this.app = find('App').getComponent('App');
+        };
+
+        _proto.onShow = function onShow() {};
+
+        _proto.onHide = function onHide() {};
+
+        _proto.setPayload = function setPayload(data) {};
+
+        _proto.onPassCodeInputChanged = function onPassCodeInputChanged() {
+          log("Input " + this.passCodeInput.string);
+        };
+
+        _proto.onCreate = function onCreate() {};
+
+        _proto.showTransition = function showTransition() {
+          Tween.stopAllByTarget(this.uiOpacity);
+          this.node.active = true;
+          tween(this.uiOpacity).set({
+            opacity: 0
+          }).to(0.3, {
+            opacity: 255
+          }).start();
+        };
+
+        _proto.hideTransition = function hideTransition() {
+          var _this2 = this;
+
+          Tween.stopAllByTarget(this.uiOpacity);
+          tween(this.uiOpacity).set({
+            opacity: 255
+          }).to(0.3, {
+            opacity: 0
+          }).call(function () {
+            _this2.node.active = false;
+          }).start();
+        };
+
+        _proto.updatePageSize = function updatePageSize(scalerX, scalerY) {};
+
+        _proto.onBack = function onBack() {
+          this.app.openPage(PageName.GameInfoPage);
+        };
+
+        return CreateRoomPage;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "uiOpacity", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "passCodeInput", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/debug-view-runtime-control.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Node, Canvas, UITransform, instantiate, Label, Color, RichText, Toggle, Button, director, Component;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      Node = module.Node;
+      Canvas = module.Canvas;
+      UITransform = module.UITransform;
+      instantiate = module.instantiate;
+      Label = module.Label;
+      Color = module.Color;
+      RichText = module.RichText;
+      Toggle = module.Toggle;
+      Button = module.Button;
+      director = module.director;
+      Component = module.Component;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _class, _class2, _descriptor, _descriptor2, _descriptor3;
+
+      cclegacy._RF.push({}, "b2bd1+njXxJxaFY3ymm06WU", "debug-view-runtime-control", undefined);
+
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var DebugViewRuntimeControl = exports('DebugViewRuntimeControl', (_dec = ccclass('internal.DebugViewRuntimeControl'), _dec2 = property(Node), _dec3 = property(Node), _dec4 = property(Node), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(DebugViewRuntimeControl, _Component);
+
+        function DebugViewRuntimeControl() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "compositeModeToggle", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "singleModeToggle", _descriptor2, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "EnableAllCompositeModeButton", _descriptor3, _assertThisInitialized(_this));
+
+          _this._single = 0;
+          _this.strSingle = ['No Single Debug', 'Vertex Color', 'Vertex Normal', 'Vertex Tangent', 'World Position', 'Vertex Mirror', 'Face Side', 'UV0', 'UV1', 'UV Lightmap', 'Project Depth', 'Linear Depth', 'Fragment Normal', 'Fragment Tangent', 'Fragment Binormal', 'Base Color', 'Diffuse Color', 'Specular Color', 'Transparency', 'Metallic', 'Roughness', 'Specular Intensity', 'IOR', 'Direct Diffuse', 'Direct Specular', 'Direct All', 'Env Diffuse', 'Env Specular', 'Env All', 'Emissive', 'Light Map', 'Shadow', 'AO', 'Fresnel', 'Direct Transmit Diffuse', 'Direct Transmit Specular', 'Env Transmit Diffuse', 'Env Transmit Specular', 'Transmit All', 'Direct TRT', 'Env TRT', 'TRT All', 'Fog'];
+          _this.strComposite = ['Direct Diffuse', 'Direct Specular', 'Env Diffuse', 'Env Specular', 'Emissive', 'Light Map', 'Shadow', 'AO', 'Normal Map', 'Fog', 'Tone Mapping', 'Gamma Correction', 'Fresnel', 'Transmit Diffuse', 'Transmit Specular', 'TRT', 'TT'];
+          _this.strMisc = ['CSM Layer Coloration', 'Lighting With Albedo'];
+          _this.compositeModeToggleList = [];
+          _this.singleModeToggleList = [];
+          _this.miscModeToggleList = [];
+          _this.textComponentList = [];
+          _this.labelComponentList = [];
+          _this.textContentList = [];
+          _this.hideButtonLabel = void 0;
+          _this._currentColorIndex = 0;
+          _this.strColor = ['<color=#ffffff>', '<color=#000000>', '<color=#ff0000>', '<color=#00ff00>', '<color=#0000ff>'];
+          _this.color = [Color.WHITE, Color.BLACK, Color.RED, Color.GREEN, Color.BLUE];
+          return _this;
+        }
+
+        var _proto = DebugViewRuntimeControl.prototype;
+
+        _proto.start = function start() {
+          // get canvas resolution
+          var canvas = this.node.parent.getComponent(Canvas);
+
+          if (!canvas) {
+            console.error('debug-view-runtime-control should be child of Canvas');
+            return;
+          }
+
+          var uiTransform = this.node.parent.getComponent(UITransform);
+          var halfScreenWidth = uiTransform.width * 0.5;
+          var halfScreenHeight = uiTransform.height * 0.5;
+          var x = -halfScreenWidth + halfScreenWidth * 0.1,
+              y = halfScreenHeight - halfScreenHeight * 0.1;
+          var width = 200,
+              height = 20; // new nodes
+
+          var miscNode = this.node.getChildByName('MiscMode');
+          var buttonNode = instantiate(miscNode);
+          buttonNode.parent = this.node;
+          buttonNode.name = 'Buttons';
+          var titleNode = instantiate(miscNode);
+          titleNode.parent = this.node;
+          titleNode.name = 'Titles'; // title
+
+          for (var i = 0; i < 2; i++) {
+            var newLabel = instantiate(this.EnableAllCompositeModeButton.getChildByName('Label'));
+            newLabel.setPosition(x + (i > 0 ? 50 + width * 2 : 150), y, 0.0);
+            newLabel.setScale(0.75, 0.75, 0.75);
+            newLabel.parent = titleNode;
+
+            var _labelComponent = newLabel.getComponent(Label);
+
+            _labelComponent.string = i ? '----------Composite Mode----------' : '----------Single Mode----------';
+            _labelComponent.color = Color.WHITE;
+            _labelComponent.overflow = 0;
+            this.labelComponentList[this.labelComponentList.length] = _labelComponent;
+          }
+
+          y -= height; // single
+
+          var currentRow = 0;
+
+          for (var _i = 0; _i < this.strSingle.length; _i++, currentRow++) {
+            if (_i === this.strSingle.length >> 1) {
+              x += width;
+              currentRow = 0;
+            }
+
+            var newNode = _i ? instantiate(this.singleModeToggle) : this.singleModeToggle;
+            newNode.setPosition(x, y - height * currentRow, 0.0);
+            newNode.setScale(0.5, 0.5, 0.5);
+            newNode.parent = this.singleModeToggle.parent;
+            var textComponent = newNode.getComponentInChildren(RichText);
+            textComponent.string = this.strSingle[_i];
+            this.textComponentList[this.textComponentList.length] = textComponent;
+            this.textContentList[this.textContentList.length] = textComponent.string;
+            newNode.on(Toggle.EventType.TOGGLE, this.toggleSingleMode, this);
+            this.singleModeToggleList[_i] = newNode;
+          }
+
+          x += width; // buttons
+
+          this.EnableAllCompositeModeButton.setPosition(x + 15, y, 0.0);
+          this.EnableAllCompositeModeButton.setScale(0.5, 0.5, 0.5);
+          this.EnableAllCompositeModeButton.on(Button.EventType.CLICK, this.enableAllCompositeMode, this);
+          this.EnableAllCompositeModeButton.parent = buttonNode;
+          var labelComponent = this.EnableAllCompositeModeButton.getComponentInChildren(Label);
+          this.labelComponentList[this.labelComponentList.length] = labelComponent;
+          var changeColorButton = instantiate(this.EnableAllCompositeModeButton);
+          changeColorButton.setPosition(x + 90, y, 0.0);
+          changeColorButton.setScale(0.5, 0.5, 0.5);
+          changeColorButton.on(Button.EventType.CLICK, this.changeTextColor, this);
+          changeColorButton.parent = buttonNode;
+          labelComponent = changeColorButton.getComponentInChildren(Label);
+          labelComponent.string = 'TextColor';
+          this.labelComponentList[this.labelComponentList.length] = labelComponent;
+          var HideButton = instantiate(this.EnableAllCompositeModeButton);
+          HideButton.setPosition(x + 200, y, 0.0);
+          HideButton.setScale(0.5, 0.5, 0.5);
+          HideButton.on(Button.EventType.CLICK, this.hideUI, this);
+          HideButton.parent = this.node.parent;
+          labelComponent = HideButton.getComponentInChildren(Label);
+          labelComponent.string = 'Hide UI';
+          this.labelComponentList[this.labelComponentList.length] = labelComponent;
+          this.hideButtonLabel = labelComponent; // misc
+
+          y -= 40;
+
+          for (var _i2 = 0; _i2 < this.strMisc.length; _i2++) {
+            var _newNode = instantiate(this.compositeModeToggle);
+
+            _newNode.setPosition(x, y - height * _i2, 0.0);
+
+            _newNode.setScale(0.5, 0.5, 0.5);
+
+            _newNode.parent = miscNode;
+
+            var _textComponent = _newNode.getComponentInChildren(RichText);
+
+            _textComponent.string = this.strMisc[_i2];
+            this.textComponentList[this.textComponentList.length] = _textComponent;
+            this.textContentList[this.textContentList.length] = _textComponent.string;
+
+            var toggleComponent = _newNode.getComponent(Toggle);
+
+            toggleComponent.isChecked = _i2 ? true : false;
+
+            _newNode.on(Toggle.EventType.TOGGLE, _i2 ? this.toggleLightingWithAlbedo : this.toggleCSMColoration, this);
+
+            this.miscModeToggleList[_i2] = _newNode;
+          } // composite
+
+
+          y -= 150;
+
+          for (var _i3 = 0; _i3 < this.strComposite.length; _i3++) {
+            var _newNode2 = _i3 ? instantiate(this.compositeModeToggle) : this.compositeModeToggle;
+
+            _newNode2.setPosition(x, y - height * _i3, 0.0);
+
+            _newNode2.setScale(0.5, 0.5, 0.5);
+
+            _newNode2.parent = this.compositeModeToggle.parent;
+
+            var _textComponent2 = _newNode2.getComponentInChildren(RichText);
+
+            _textComponent2.string = this.strComposite[_i3];
+            this.textComponentList[this.textComponentList.length] = _textComponent2;
+            this.textContentList[this.textContentList.length] = _textComponent2.string;
+
+            _newNode2.on(Toggle.EventType.TOGGLE, this.toggleCompositeMode, this);
+
+            this.compositeModeToggleList[_i3] = _newNode2;
+          }
+        };
+
+        _proto.isTextMatched = function isTextMatched(textUI, textDescription) {
+          var tempText = new String(textUI);
+          var findIndex = tempText.search('>');
+
+          if (findIndex === -1) {
+            return textUI === textDescription;
+          } else {
+            tempText = tempText.substr(findIndex + 1);
+            tempText = tempText.substr(0, tempText.search('<'));
+            return tempText === textDescription;
+          }
+        };
+
+        _proto.toggleSingleMode = function toggleSingleMode(toggle) {
+          var debugView = director.root.debugView;
+          var textComponent = toggle.getComponentInChildren(RichText);
+
+          for (var i = 0; i < this.strSingle.length; i++) {
+            if (this.isTextMatched(textComponent.string, this.strSingle[i])) {
+              debugView.singleMode = i;
+            }
+          }
+        };
+
+        _proto.toggleCompositeMode = function toggleCompositeMode(toggle) {
+          var debugView = director.root.debugView;
+          var textComponent = toggle.getComponentInChildren(RichText);
+
+          for (var i = 0; i < this.strComposite.length; i++) {
+            if (this.isTextMatched(textComponent.string, this.strComposite[i])) {
+              debugView.enableCompositeMode(i, toggle.isChecked);
+            }
+          }
+        };
+
+        _proto.toggleLightingWithAlbedo = function toggleLightingWithAlbedo(toggle) {
+          var debugView = director.root.debugView;
+          debugView.lightingWithAlbedo = toggle.isChecked;
+        };
+
+        _proto.toggleCSMColoration = function toggleCSMColoration(toggle) {
+          var debugView = director.root.debugView;
+          debugView.csmLayerColoration = toggle.isChecked;
+        };
+
+        _proto.enableAllCompositeMode = function enableAllCompositeMode(button) {
+          var debugView = director.root.debugView;
+          debugView.enableAllCompositeMode(true);
+
+          for (var i = 0; i < this.compositeModeToggleList.length; i++) {
+            var _toggleComponent = this.compositeModeToggleList[i].getComponent(Toggle);
+
+            _toggleComponent.isChecked = true;
+          }
+
+          var toggleComponent = this.miscModeToggleList[0].getComponent(Toggle);
+          toggleComponent.isChecked = false;
+          debugView.csmLayerColoration = false;
+          toggleComponent = this.miscModeToggleList[1].getComponent(Toggle);
+          toggleComponent.isChecked = true;
+          debugView.lightingWithAlbedo = true;
+        };
+
+        _proto.hideUI = function hideUI(button) {
+          var titleNode = this.node.getChildByName('Titles');
+          var activeValue = !titleNode.active;
+          this.singleModeToggleList[0].parent.active = activeValue;
+          this.miscModeToggleList[0].parent.active = activeValue;
+          this.compositeModeToggleList[0].parent.active = activeValue;
+          this.EnableAllCompositeModeButton.parent.active = activeValue;
+          titleNode.active = activeValue;
+          this.hideButtonLabel.string = activeValue ? 'Hide UI' : 'Show UI';
+        };
+
+        _proto.changeTextColor = function changeTextColor(button) {
+          this._currentColorIndex++;
+
+          if (this._currentColorIndex >= this.strColor.length) {
+            this._currentColorIndex = 0;
+          }
+
+          for (var i = 0; i < this.textComponentList.length; i++) {
+            this.textComponentList[i].string = this.strColor[this._currentColorIndex] + this.textContentList[i] + '</color>';
+          }
+
+          for (var _i4 = 0; _i4 < this.labelComponentList.length; _i4++) {
+            this.labelComponentList[_i4].color = this.color[this._currentColorIndex];
+          }
+        };
+
+        _proto.onLoad = function onLoad() {};
+
+        _proto.update = function update(deltaTime) {};
+
+        return DebugViewRuntimeControl;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "compositeModeToggle", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "singleModeToggle", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "EnableAllCompositeModeButton", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/DebugView.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './Dropdown.ts', './GameConst.ts', './env'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Node, LabelComponent, Component, Dropdown, DropdownItemData, Constants, DEBUG;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      Node = module.Node;
+      LabelComponent = module.LabelComponent;
+      Component = module.Component;
+    }, function (module) {
+      Dropdown = module.Dropdown;
+      DropdownItemData = module.DropdownItemData;
+    }, function (module) {
+      Constants = module.Constants;
+    }, function (module) {
+      DEBUG = module.DEBUG;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _class, _class2, _descriptor, _descriptor2, _descriptor3;
+
+      cclegacy._RF.push({}, "87f15SKOBFC168PHcqjVl/v", "DebugView", undefined);
+
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var Theme = Constants.Theme;
+      var DebugView = exports('DebugView', (_dec = ccclass('DebugView'), _dec2 = property({
+        type: Node
+      }), _dec3 = property({
+        type: LabelComponent
+      }), _dec4 = property({
+        type: Dropdown
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(DebugView, _Component);
+
+        function DebugView() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "view", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbDebug", _descriptor2, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "themeDropdown", _descriptor3, _assertThisInitialized(_this));
+
+          _this.themeManagement = null;
+          return _this;
+        }
+
+        var _proto = DebugView.prototype;
+
+        _proto.onLoad = function onLoad() {
+          this.node.active = DEBUG;
+          var themeOption = [];
+
+          for (var key in Theme) {
+            themeOption.push(new DropdownItemData(key, Theme[key].Name));
+          }
+
+          this.themeDropdown.init(themeOption, this.onThemeChange.bind(this));
+        };
+
+        _proto.onShow = function onShow() {
+          this.view.active = !this.view.active;
+          this.lbDebug.string = this.view.active ? 'Close' : 'Debug';
+        };
+
+        _proto.onThemeChange = function onThemeChange(themeId) {
+          globalThis.app.changeTheme(themeId);
+        };
+
+        return DebugView;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "view", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "lbDebug", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "themeDropdown", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/DeckController.ts", ['cc'], function (exports) {
+  'use strict';
+
+  var cclegacy;
+  return {
+    setters: [function (module) {
+      cclegacy = module.cclegacy;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "fad618c61tHZpd5Y9JgNHdt", "DeckController", undefined);
+
+      var QuestionData = exports('QuestionData', function QuestionData() {
+        this.Type = void 0;
+        this.Level = void 0;
+        this.Penalty = void 0;
+        this.English = void 0;
+        this.Japanese = void 0;
+      });
+      var DeckController = exports('DeckController', /*#__PURE__*/function () {
+        function DeckController() {
+          this.deckMap = {};
+        }
+
+        var _proto = DeckController.prototype;
+
+        _proto.addDeck = function addDeck(deckId, questions) {
+          if (this.deckMap[deckId]) {
+            console.warn("The deck " + deckId + " already existed");
+            return false;
+          }
+
+          this.deckMap[deckId] = {};
+          var deck = this.deckMap[deckId];
+
+          for (var i = 0; i < questions.length; i++) {
+            var question = questions[i];
+            if (!deck["" + question.Level]) deck["" + question.Level] = [];
+            deck["" + question.Level].push(question);
+          }
+
+          return true;
+        };
+
+        _proto.getQuestions = function getQuestions(deckId, level) {
+          if (!this.deckMap[deckId]) return [];
+          var deck = this.deckMap[deckId];
+          if (!deck["" + level]) return [];
+          return [].concat(deck["" + level]);
+        };
+
+        return DeckController;
+      }());
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/DeckItem.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, LabelComponent, Sprite, Component;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      LabelComponent = module.LabelComponent;
+      Sprite = module.Sprite;
+      Component = module.Component;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _class, _class2, _descriptor, _descriptor2, _descriptor3;
+
+      cclegacy._RF.push({}, "b6fa7zUM7ZC17Ob7MJGK8qT", "DeckItem", undefined);
+
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var Deck = exports('Deck', function Deck(title, description) {
+        this.Title = void 0;
+        this.Description = void 0;
+        this.Title = title;
+        this.Description = description;
+      });
+      var DeckItem = exports('DeckItem', (_dec = ccclass('DeckItem'), _dec2 = property({
+        type: LabelComponent
+      }), _dec3 = property({
+        type: LabelComponent
+      }), _dec4 = property({
+        type: Sprite
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(DeckItem, _Component);
+
+        function DeckItem() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "lbTitle", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbDescription", _descriptor2, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "deckIcon", _descriptor3, _assertThisInitialized(_this));
+
+          _this.onClick = void 0;
+          _this.Data = void 0;
+          _this.Index = void 0;
+          return _this;
+        }
+
+        var _proto = DeckItem.prototype;
+
+        _proto.setData = function setData(data, index, onClick) {
+          // this.lbTitle.string = data.Title;
+          // this.lbDescription.string = data.Description;
+          this.onClick = onClick;
+          this.Data = data;
+          this.Index = index;
+        };
+
+        _proto.onClicked = function onClicked() {
+          this.onClick && this.onClick(this);
+        };
+
+        return DeckItem;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "lbTitle", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "lbDescription", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "deckIcon", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/Dropdown.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './DropdownOption.ts'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Node, Prefab, LabelComponent, instantiate, Component, DropdownOption;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      Node = module.Node;
+      Prefab = module.Prefab;
+      LabelComponent = module.LabelComponent;
+      instantiate = module.instantiate;
+      Component = module.Component;
+    }, function (module) {
+      DropdownOption = module.DropdownOption;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+
+      cclegacy._RF.push({}, "6cd5aujHmFETpy2UreEX4Dv", "Dropdown", undefined);
+
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var Dropdown = exports('Dropdown', (_dec = ccclass('Dropdown'), _dec2 = property({
+        type: Node
+      }), _dec3 = property({
+        type: Prefab
+      }), _dec4 = property({
+        type: Node
+      }), _dec5 = property({
+        type: LabelComponent
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(Dropdown, _Component);
+
+        function Dropdown() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "optionView", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "optionTemplate", _descriptor2, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "optionContainer", _descriptor3, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "curOptionName", _descriptor4, _assertThisInitialized(_this));
+
+          _this.onChangeOption = null;
+          return _this;
+        }
+
+        var _proto = Dropdown.prototype;
+
+        _proto.init = function init(data, onChangeOption) {
+          this.curOptionName.string = data[0].name;
+          this.onChangeOption = onChangeOption;
+
+          for (var index = 0; index < data.length; index++) {
+            var optionData = data[index];
+            var node = instantiate(this.optionTemplate);
+            this.optionContainer.addChild(node);
+            var ctrl = node.getComponent(DropdownOption);
+            ctrl.setData(optionData, this.onOptionClick.bind(this));
+          }
+        };
+
+        _proto.onClick = function onClick() {
+          this.optionView.active = !this.optionView.active;
+        };
+
+        _proto.onOptionClick = function onOptionClick(data) {
+          this.optionView.active = false;
+          this.curOptionName.string = data.name;
+          this.onChangeOption && this.onChangeOption(data.id);
+        };
+
+        return Dropdown;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "optionView", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "optionTemplate", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "optionContainer", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "curOptionName", [_dec5], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+      var DropdownItemData = exports('DropdownItemData', function DropdownItemData(id, name) {
+        this.name = 'Option';
+        this.id = '';
+        this.id = id;
+        this.name = name;
+      });
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/DropdownOption.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, LabelComponent, Button, Node, Component;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      LabelComponent = module.LabelComponent;
+      Button = module.Button;
+      Node = module.Node;
+      Component = module.Component;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _class, _class2, _descriptor, _descriptor2;
+
+      cclegacy._RF.push({}, "8e4d8hkWUxPPonmWogRK078", "DropdownOption", undefined);
+
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var DropdownOption = exports('DropdownOption', (_dec = ccclass('DropdownOption'), _dec2 = property({
+        type: LabelComponent
+      }), _dec3 = property({
+        type: Button
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(DropdownOption, _Component);
+
+        function DropdownOption() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "optionName", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "button", _descriptor2, _assertThisInitialized(_this));
+
+          _this.callback = null;
+          _this.data = null;
+          return _this;
+        }
+
+        var _proto = DropdownOption.prototype;
+
+        _proto.setData = function setData(data, onClick) {
+          this.data = data;
+          this.optionName.string = data.name;
+          this.callback = onClick;
+          this.button.node.on(Node.EventType.TOUCH_START, this.onClick.bind(this));
+        };
+
+        _proto.onClick = function onClick() {
+          this.callback && this.callback(this.data);
+        };
+
+        return DropdownOption;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "optionName", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "button", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/GameConst.ts", ['cc'], function (exports) {
+  'use strict';
+
+  var cclegacy;
+  return {
+    setters: [function (module) {
+      cclegacy = module.cclegacy;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "711241GI0lEFojizhc9aDNo", "GameConst", undefined);
+
+      var Constants = exports('Constants', {
+        PageName: {
+          SelectGamePage: 'SelectGamePage',
+          GameInfoPage: 'GameInfoPage',
+          CreateRoomPage: 'CreateRoomPage',
+          JoinRoomPage: 'JoinRoomPage',
+          PassAndPlayPage: 'PassAndPlayPage',
+          GameIntroPage: 'GameIntroPage',
+          SelectDifficultyPage: 'SelectDifficultyPage',
+          SelectDeckPage: 'SelectDeckPage',
+          QuestionPage: 'QuestionPage'
+        },
+        GamePlaySetting: {
+          MaxPlayer: 8
+        },
+        Theme: {
+          0: {
+            Name: 'Green',
+            BackgroundColor: '#D9D9D9',
+            HighlightColor: '#97B952',
+            CommonButtonColor: '#FFFFFF',
+            DescriptionTextColor: '#000000',
+            QuestionTextColor: '#FFFFFF',
+            PopupColor: '#97B952',
+            QuestionBgColor: '#97B952',
+            IntroBgColor: '#D9D9D9',
+            DifficultyBgColor: '#FFFFFF'
+          },
+          1: {
+            Name: 'Blue',
+            BackgroundColor: '#71A1D1',
+            HighlightColor: '#FABD42',
+            CommonButtonColor: '#F7F4ED',
+            DescriptionTextColor: '#FFFFFF',
+            QuestionTextColor: '#000000',
+            PopupColor: '#71A1D1',
+            QuestionBgColor: '#F7F4ED',
+            IntroBgColor: '#F7F4ED',
+            DifficultyBgColor: '#F7F4ED'
+          }
+        }
+      });
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/GameData.ts", ['cc'], function (exports) {
+  'use strict';
+
+  var cclegacy;
+  return {
+    setters: [function (module) {
+      cclegacy = module.cclegacy;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "1f7cbgDowlLT5HMVONqDL/3", "GameData", undefined);
+
+      var TransientData = function TransientData() {
+        this.PlayerName = void 0;
+        this.ThemeId = '0';
+      };
+
+      var GameData = exports('GameData', /*#__PURE__*/function () {
+        function GameData() {
+          this.transientData = void 0;
+          this.persistentData = void 0;
+          this.transientData = new TransientData();
+        }
+
+        var _proto = GameData.prototype;
+
+        _proto.getPlayerName = function getPlayerName() {
+          return this.transientData.PlayerName;
+        };
+
+        _proto.getThemeId = function getThemeId() {
+          return this.transientData.ThemeId;
+        };
+
+        _proto.setPlayerName = function setPlayerName(name) {
+          this.transientData.PlayerName = name;
+        };
+
+        _proto.setTheme = function setTheme(themeId) {
+          this.transientData.ThemeId = themeId;
+        };
+
+        return GameData;
+      }());
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/GameInfoPage.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GameConst.ts'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, find, Tween, tween, Component, Constants;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      UIOpacity = module.UIOpacity;
+      find = module.find;
+      Tween = module.Tween;
+      tween = module.tween;
+      Component = module.Component;
+    }, function (module) {
+      Constants = module.Constants;
+    }],
+    execute: function () {
+      var _dec, _dec2, _class, _class2, _descriptor;
+
+      cclegacy._RF.push({}, "e31ee8sJSxPzqnkM/F9I6so", "GameInfoPage", undefined);
+
+      var PageName = Constants.PageName;
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var GameInfoPage = exports('GameInfoPage', (_dec = ccclass('GameInfoPage'), _dec2 = property(UIOpacity), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(GameInfoPage, _Component);
+
+        function GameInfoPage() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "uiOpacity", _descriptor, _assertThisInitialized(_this));
+
+          _this.app = void 0;
+          _this.gameId = void 0;
+          return _this;
+        }
+
+        var _proto = GameInfoPage.prototype;
+
+        _proto.onLoad = function onLoad() {
+          this.app = find('App').getComponent('App');
+        };
+
+        _proto.onShow = function onShow() {};
+
+        _proto.onHide = function onHide() {};
+
+        _proto.setPayload = function setPayload(data) {
+          this.gameId = data;
+        };
+
+        _proto.start = function start() {};
+
+        _proto.onCreate = function onCreate() {
+          this.app.openPage(PageName.CreateRoomPage);
+        };
+
+        _proto.onJoin = function onJoin() {
+          this.app.openPage(PageName.JoinRoomPage);
+        };
+
+        _proto.onPassAndPLay = function onPassAndPLay() {
+          this.app.openPage(PageName.PassAndPlayPage, this.gameId);
+        };
+
+        _proto.showTransition = function showTransition() {
+          Tween.stopAllByTarget(this.uiOpacity);
+          this.node.active = true;
+          tween(this.uiOpacity).set({
+            opacity: 0
+          }).to(0.3, {
+            opacity: 255
+          }).start();
+        };
+
+        _proto.hideTransition = function hideTransition() {
+          var _this2 = this;
+
+          Tween.stopAllByTarget(this.uiOpacity);
+          tween(this.uiOpacity).set({
+            opacity: 255
+          }).to(0.3, {
+            opacity: 0
+          }).call(function () {
+            _this2.node.active = false;
+          }).start();
+        };
+
+        _proto.updatePageSize = function updatePageSize(scalerX, scalerY) {};
+
+        _proto.onBack = function onBack() {
+          this.app.openPage(PageName.SelectGamePage);
+        };
+
+        return GameInfoPage;
+      }(Component), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "uiOpacity", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/GameIntroPage.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GameConst.ts', './CommonPopup.ts'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, find, Tween, tween, Component, Constants, CommonPopupData;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      UIOpacity = module.UIOpacity;
+      find = module.find;
+      Tween = module.Tween;
+      tween = module.tween;
+      Component = module.Component;
+    }, function (module) {
+      Constants = module.Constants;
+    }, function (module) {
+      CommonPopupData = module.CommonPopupData;
+    }],
+    execute: function () {
+      var _dec, _dec2, _class, _class2, _descriptor;
+
+      cclegacy._RF.push({}, "90d0epMVfdFt6aJOp8zhuUq", "GameIntroPage", undefined);
+
+      var PageName = Constants.PageName;
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var GameIntroPage = exports('GameIntroPage', (_dec = ccclass('GameIntroPage'), _dec2 = property(UIOpacity), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(GameIntroPage, _Component);
+
+        function GameIntroPage() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "uiOpacity", _descriptor, _assertThisInitialized(_this));
+
+          _this.app = void 0;
+          return _this;
+        }
+
+        var _proto = GameIntroPage.prototype;
+
+        _proto.onLoad = function onLoad() {
+          this.app = find('App').getComponent('App');
+        };
+
+        _proto.onShow = function onShow() {};
+
+        _proto.onHide = function onHide() {};
+
+        _proto.setPayload = function setPayload(data) {};
+
+        _proto.onStartGame = function onStartGame() {
+          this.app.openPage(PageName.SelectDifficultyPage);
+        };
+
+        _proto.showTransition = function showTransition() {
+          Tween.stopAllByTarget(this.uiOpacity);
+          this.node.active = true;
+          tween(this.uiOpacity).set({
+            opacity: 0
+          }).to(0.3, {
+            opacity: 255
+          }).start();
+        };
+
+        _proto.hideTransition = function hideTransition() {
+          var _this2 = this;
+
+          Tween.stopAllByTarget(this.uiOpacity);
+          tween(this.uiOpacity).set({
+            opacity: 255
+          }).to(0.3, {
+            opacity: 0
+          }).call(function () {
+            _this2.node.active = false;
+          }).start();
+        };
+
+        _proto.updatePageSize = function updatePageSize(scalerX, scalerY) {};
+
+        _proto.onBack = function onBack() {
+          var _this3 = this;
+
+          var popupData = new CommonPopupData();
+          popupData.Description = 'If you exit the game, the game room will be terminated';
+          popupData.ButtonYesText = 'OKAY';
+
+          popupData.ButtonYesCallback = function () {
+            return _this3.app.openPage(PageName.SelectGamePage);
+          };
+
+          popupData.ButtonNoText = 'CANCEL';
+
+          popupData.ButtonNoCallback = function () {};
+
+          this.app.openPopup(popupData);
+        };
+
+        return GameIntroPage;
+      }(Component), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "uiOpacity", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/GameItem.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, math, UITransform, LabelComponent, Sprite, Color, Tween, tween, Component;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      math = module.math;
+      UITransform = module.UITransform;
+      LabelComponent = module.LabelComponent;
+      Sprite = module.Sprite;
+      Color = module.Color;
+      Tween = module.Tween;
+      tween = module.tween;
+      Component = module.Component;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
+
+      cclegacy._RF.push({}, "89bd6sG8qRLU5UORfWtMTIX", "GameItem", undefined);
+
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var lerp = math.lerp;
+      var GameItem = exports('GameItem', (_dec = ccclass('GameItem'), _dec2 = property({
+        type: UITransform
+      }), _dec3 = property({
+        type: LabelComponent
+      }), _dec4 = property({
+        type: LabelComponent
+      }), _dec5 = property({
+        type: Sprite
+      }), _dec6 = property({
+        type: Sprite
+      }), _dec7 = property({
+        type: Sprite
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(GameItem, _Component);
+
+        function GameItem() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "itemTransform", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbName", _descriptor2, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbDescription", _descriptor3, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "background", _descriptor4, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "iconGame", _descriptor5, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "iconHeart", _descriptor6, _assertThisInitialized(_this));
+
+          _this.isShowDetail = false;
+          _this.data = null;
+          _this.callback = null;
+          _this.index = null;
+          return _this;
+        }
+
+        var _proto = GameItem.prototype;
+
+        _proto.setInfo = function setInfo(index, info, callback) {
+          if (callback === void 0) {
+            callback = null;
+          } //TODO: load real data
+
+
+          info = {
+            id: "doanddrink" + index,
+            name: "DO OR DRINK " + index,
+            description: 'Do the dare on the card or take a drink. If you do the dare, you get to take the card',
+            shortDescription: 'Do the dare on the card or take a drink'
+          };
+          this.data = info;
+          this.isShowDetail = false;
+          this.callback = callback;
+          this.index = index;
+          this.lbName.string = this.data.name;
+        };
+
+        _proto.showDetail = function showDetail(isDetail, hasAnim) {
+          var _this2 = this;
+
+          if (hasAnim === void 0) {
+            hasAnim = false;
+          }
+
+          this.isShowDetail = isDetail;
+          this.lbDescription.string = this.isShowDetail ? this.data.description : this.data.shortDescription;
+          this.iconHeart.color = this.isShowDetail ? Color.WHITE : Color.BLACK;
+          this.lbName.color = this.isShowDetail ? Color.WHITE : Color.BLACK;
+          this.lbDescription.color = this.isShowDetail ? Color.WHITE : Color.BLACK;
+          this.iconGame.node.active = this.isShowDetail;
+
+          if (hasAnim) {
+            Tween.stopAllByTarget(this.itemTransform);
+            tween(this.itemTransform).to(0.4, {
+              height: this.isShowDetail ? 543 : 186
+            }, {
+              easing: 'quadOut'
+            }).start();
+            var newColor = this.isShowDetail ? new Color().fromHEX('#96B952') : Color.WHITE;
+            var lastColor = this.background.color;
+            Tween.stopAllByTarget(this.background);
+            tween(this.background).to(0.4, {}, {
+              onUpdate: function onUpdate(target, ratio) {
+                var color = new Color();
+                color.r = lerp(lastColor.r, newColor.r, ratio);
+                color.b = lerp(lastColor.b, newColor.b, ratio);
+                color.g = lerp(lastColor.g, newColor.g, ratio);
+                _this2.background.color = color;
+              }
+            }).start();
+          } else {
+            this.itemTransform.height = this.isShowDetail ? 543 : 186;
+            this.background.color = this.isShowDetail ? new Color().fromHEX('#96B952') : Color.WHITE;
+          }
+        };
+
+        _proto.onClicked = function onClicked() {
+          this.callback && this.callback(this.index, this.isShowDetail, this.data.id);
+        };
+
+        return GameItem;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "itemTransform", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "lbName", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "lbDescription", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "background", [_dec5], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "iconGame", [_dec6], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, "iconHeart", [_dec7], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/JoinRoomPage.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GameConst.ts'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, EditBox, find, log, Tween, tween, Component, Constants;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      UIOpacity = module.UIOpacity;
+      EditBox = module.EditBox;
+      find = module.find;
+      log = module.log;
+      Tween = module.Tween;
+      tween = module.tween;
+      Component = module.Component;
+    }, function (module) {
+      Constants = module.Constants;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _class, _class2, _descriptor, _descriptor2, _descriptor3;
+
+      cclegacy._RF.push({}, "ac17cAh8ZRPNbOy4gVkc7ff", "JoinRoomPage", undefined);
+
+      var PageName = Constants.PageName;
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var JoinRoomPage = exports('JoinRoomPage', (_dec = ccclass('JoinRoomPage'), _dec2 = property(UIOpacity), _dec3 = property({
+        type: EditBox
+      }), _dec4 = property({
+        type: EditBox
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(JoinRoomPage, _Component);
+
+        function JoinRoomPage() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "uiOpacity", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "roomNumberInput", _descriptor2, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "passCodeInput", _descriptor3, _assertThisInitialized(_this));
+
+          _this.app = void 0;
+          return _this;
+        }
+
+        var _proto = JoinRoomPage.prototype;
+
+        _proto.onLoad = function onLoad() {
+          this.app = find('App').getComponent('App');
+        };
+
+        _proto.onShow = function onShow() {};
+
+        _proto.onHide = function onHide() {};
+
+        _proto.setPayload = function setPayload(data) {};
+
+        _proto.onRoomNumberInputChanged = function onRoomNumberInputChanged() {
+          log("Room Input " + this.roomNumberInput.string);
+        };
+
+        _proto.onPassCodeInputChanged = function onPassCodeInputChanged() {
+          log("Pass Input " + this.passCodeInput.string);
+        };
+
+        _proto.onJoin = function onJoin() {};
+
+        _proto.showTransition = function showTransition() {
+          Tween.stopAllByTarget(this.uiOpacity);
+          this.node.active = true;
+          tween(this.uiOpacity).set({
+            opacity: 0
+          }).to(0.3, {
+            opacity: 255
+          }).start();
+        };
+
+        _proto.hideTransition = function hideTransition() {
+          var _this2 = this;
+
+          Tween.stopAllByTarget(this.uiOpacity);
+          tween(this.uiOpacity).set({
+            opacity: 255
+          }).to(0.3, {
+            opacity: 0
+          }).call(function () {
+            _this2.node.active = false;
+          }).start();
+        };
+
+        _proto.updatePageSize = function updatePageSize(scalerX, scalerY) {};
+
+        _proto.onBack = function onBack() {
+          this.app.openPage(PageName.GameInfoPage);
+        };
+
+        return JoinRoomPage;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "uiOpacity", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "roomNumberInput", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "passCodeInput", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/main", ['./debug-view-runtime-control.ts', './Dropdown.ts', './DropdownOption.ts', './App.ts', './DeckController.ts', './GameConst.ts', './GameData.ts', './GameItem.ts', './SelectGamePage.ts', './CreateRoomPage.ts', './GameInfoPage.ts', './GameIntroPage.ts', './JoinRoomPage.ts', './BotPlayerItem.ts', './PassAndPlayPage.ts', './CommonPopup.ts', './QuestionPage.ts', './DeckItem.ts', './SelectDeckPage.ts', './SelectDifficultyPage.ts', './ColorPalette.ts', './DebugView.ts', './ThemeManagement.ts'], function () {
+  'use strict';
+
+  return {
+    setters: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+    execute: function () {}
+  };
+});
+
+System.register("chunks:///_virtual/PassAndPlayPage.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GameConst.ts', './BotPlayerItem.ts'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, LabelComponent, Prefab, UITransform, Node, find, instantiate, Vec3, Tween, tween, Component, Constants, Player, BotPlayerItem;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      UIOpacity = module.UIOpacity;
+      LabelComponent = module.LabelComponent;
+      Prefab = module.Prefab;
+      UITransform = module.UITransform;
+      Node = module.Node;
+      find = module.find;
+      instantiate = module.instantiate;
+      Vec3 = module.Vec3;
+      Tween = module.Tween;
+      tween = module.tween;
+      Component = module.Component;
+    }, function (module) {
+      Constants = module.Constants;
+    }, function (module) {
+      Player = module.Player;
+      BotPlayerItem = module.BotPlayerItem;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+
+      cclegacy._RF.push({}, "41587rDeZ5FDK53i3ReKOMv", "PassAndPlayPage", undefined);
+
+      var PageName = Constants.PageName,
+          GamePlaySetting = Constants.GamePlaySetting;
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var PassAndPlayPage = exports('PassAndPlayPage', (_dec = ccclass('PassAndPlayPage'), _dec2 = property(UIOpacity), _dec3 = property({
+        type: LabelComponent
+      }), _dec4 = property(Prefab), _dec5 = property(UITransform), _dec6 = property(Node), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(PassAndPlayPage, _Component);
+
+        function PassAndPlayPage() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "uiOpacity", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbHostName", _descriptor2, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "playerPrefab", _descriptor3, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "playerContainerTransform", _descriptor4, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "btnAddPlayer", _descriptor5, _assertThisInitialized(_this));
+
+          _this.app = void 0;
+          _this.gameId = void 0;
+          _this.playerCount = 0;
+          _this.players = [];
+          return _this;
+        }
+
+        var _proto = PassAndPlayPage.prototype;
+
+        _proto.onLoad = function onLoad() {
+          this.app = find('App').getComponent('App');
+        };
+
+        _proto.onShow = function onShow() {};
+
+        _proto.onHide = function onHide() {};
+
+        _proto.setPayload = function setPayload(data) {
+          this.gameId = data;
+        };
+
+        _proto.start = function start() {
+          this.addLocalPlayer();
+        };
+
+        _proto.addLocalPlayer = function addLocalPlayer() {
+          var localPlayerName = this.app.GameData.getPlayerName();
+          this.lbHostName.string = localPlayerName;
+          this.players.push(new Player(localPlayerName));
+        };
+
+        _proto.addPlayer = function addPlayer() {
+          if (this.playerCount >= GamePlaySetting.MaxPlayer) return;
+          this.playerCount += 1;
+          var node = instantiate(this.playerPrefab);
+          this.playerContainerTransform.node.addChild(node);
+          var ctrl = node.getComponent(BotPlayerItem);
+          ctrl.setData(new Player("Player " + this.playerCount), this.playerCount, this.removePlayer.bind(this));
+          this.players.push(ctrl.Data);
+          var paddingYConatiner = 93;
+          this.btnAddPlayer.setPosition(new Vec3(0, -this.playerContainerTransform.height - paddingYConatiner));
+        };
+
+        _proto.removePlayer = function removePlayer(player) {
+          this.players.splice(player.Index, 1);
+          this.playerCount -= 1;
+          player.node.destroy();
+        };
+
+        _proto.onStartGame = function onStartGame() {
+          this.app.openPage(PageName.GameIntroPage);
+        };
+
+        _proto.showTransition = function showTransition() {
+          Tween.stopAllByTarget(this.uiOpacity);
+          this.node.active = true;
+          tween(this.uiOpacity).set({
+            opacity: 0
+          }).to(0.3, {
+            opacity: 255
+          }).start();
+        };
+
+        _proto.hideTransition = function hideTransition() {
+          var _this2 = this;
+
+          Tween.stopAllByTarget(this.uiOpacity);
+          tween(this.uiOpacity).set({
+            opacity: 255
+          }).to(0.3, {
+            opacity: 0
+          }).call(function () {
+            _this2.node.active = false;
+          }).start();
+        };
+
+        _proto.updatePageSize = function updatePageSize(scalerX, scalerY) {};
+
+        _proto.onBack = function onBack() {
+          this.app.openPage(PageName.GameInfoPage);
+        };
+
+        return PassAndPlayPage;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "uiOpacity", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "lbHostName", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "playerPrefab", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "playerContainerTransform", [_dec5], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "btnAddPlayer", [_dec6], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/QuestionPage.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GameConst.ts', './CommonPopup.ts'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, LabelComponent, find, Tween, tween, Component, Constants, CommonPopupData;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      UIOpacity = module.UIOpacity;
+      LabelComponent = module.LabelComponent;
+      find = module.find;
+      Tween = module.Tween;
+      tween = module.tween;
+      Component = module.Component;
+    }, function (module) {
+      Constants = module.Constants;
+    }, function (module) {
+      CommonPopupData = module.CommonPopupData;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _class, _class2, _descriptor, _descriptor2;
+
+      cclegacy._RF.push({}, "01a62n2jdVFYJn5TRltWchZ", "QuestionPage", undefined);
+
+      var PageName = Constants.PageName;
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var QuestionPage = exports('QuestionPage', (_dec = ccclass('QuestionPage'), _dec2 = property(UIOpacity), _dec3 = property({
+        type: LabelComponent
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(QuestionPage, _Component);
+
+        function QuestionPage() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "uiOpacity", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbQuestion", _descriptor2, _assertThisInitialized(_this));
+
+          _this.app = void 0;
+          _this.questionsPool = void 0;
+          return _this;
+        }
+
+        var _proto = QuestionPage.prototype;
+
+        _proto.onLoad = function onLoad() {
+          this.app = find('App').getComponent('App');
+        };
+
+        _proto.onShow = function onShow() {
+          this.loadQuestion();
+        };
+
+        _proto.onHide = function onHide() {};
+
+        _proto.setPayload = function setPayload(data) {
+          console.log("Open deck " + data['deckId'] + " with level " + data['level']);
+          this.questionsPool = this.app.DeckController.getQuestions(data['deckId'], data['level']);
+        };
+
+        _proto.loadQuestion = function loadQuestion() {
+          if (this.questionsPool.length == 0) return this.showEndPopup();
+          var questionIndex = Math.floor(Math.random() * this.questionsPool.length);
+          var question = this.questionsPool[questionIndex];
+          var enContent = question.English.replace('$penalty', question.Penalty);
+          var jaContent = question.Japanese.replace('$penalty', question.Penalty);
+          this.lbQuestion.string = "\n" + enContent + "\n\n" + jaContent;
+          this.questionsPool.splice(questionIndex, 1);
+          console.log("Question pool has " + this.questionsPool.length + " questions remaining");
+        };
+
+        _proto.showEndPopup = function showEndPopup() {
+          var _this2 = this;
+
+          var commonPopupData = new CommonPopupData();
+          commonPopupData.Title = 'Congratulation';
+          commonPopupData.Description = 'You guys already passed all cards';
+          commonPopupData.ButtonYesText = 'OKAY';
+
+          commonPopupData.ButtonYesCallback = function () {
+            _this2.app.openPage(PageName.SelectDifficultyPage);
+          };
+
+          this.app.openPopup(commonPopupData);
+        };
+
+        _proto.onNextQuestion = function onNextQuestion() {
+          this.loadQuestion();
+        };
+
+        _proto.showTransition = function showTransition() {
+          Tween.stopAllByTarget(this.uiOpacity);
+          this.node.active = true;
+          tween(this.uiOpacity).set({
+            opacity: 0
+          }).to(0.3, {
+            opacity: 255
+          }).start();
+        };
+
+        _proto.hideTransition = function hideTransition() {
+          var _this3 = this;
+
+          Tween.stopAllByTarget(this.uiOpacity);
+          tween(this.uiOpacity).set({
+            opacity: 255
+          }).to(0.3, {
+            opacity: 0
+          }).call(function () {
+            _this3.node.active = false;
+          }).start();
+        };
+
+        _proto.updatePageSize = function updatePageSize(scalerX, scalerY) {};
+
+        _proto.onBack = function onBack() {
+          this.app.openPage(PageName.SelectDeckPage);
+        };
+
+        return QuestionPage;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "uiOpacity", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "lbQuestion", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/SelectDeckPage.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GameConst.ts', './DeckItem.ts'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, Prefab, Node, find, instantiate, Tween, tween, Component, Constants, DeckItem, Deck;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      UIOpacity = module.UIOpacity;
+      Prefab = module.Prefab;
+      Node = module.Node;
+      find = module.find;
+      instantiate = module.instantiate;
+      Tween = module.Tween;
+      tween = module.tween;
+      Component = module.Component;
+    }, function (module) {
+      Constants = module.Constants;
+    }, function (module) {
+      DeckItem = module.DeckItem;
+      Deck = module.Deck;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _class, _class2, _descriptor, _descriptor2, _descriptor3;
+
+      cclegacy._RF.push({}, "187d0QrbdxDRa1Ofct6ZUoQ", "SelectDeckPage", undefined);
+
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var PageName = Constants.PageName;
+      var SelectDeckPage = exports('SelectDeckPage', (_dec = ccclass('SelectDeckPage'), _dec2 = property(UIOpacity), _dec3 = property(Prefab), _dec4 = property({
+        type: Node
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(SelectDeckPage, _Component);
+
+        function SelectDeckPage() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "uiOpacity", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "deckPrefab", _descriptor2, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "container", _descriptor3, _assertThisInitialized(_this));
+
+          _this.app = void 0;
+          _this.questionPayload = {};
+          return _this;
+        }
+
+        var _proto = SelectDeckPage.prototype;
+
+        _proto.onLoad = function onLoad() {
+          this.app = find('App').getComponent('App');
+        };
+
+        _proto.onShow = function onShow() {};
+
+        _proto.onHide = function onHide() {};
+
+        _proto.setPayload = function setPayload(data) {
+          this.questionPayload['level'] = data;
+        };
+
+        _proto.start = function start() {
+          var deckData = new Deck('BEGINNER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.');
+
+          for (var index = 0; index < 1; index++) {
+            var node = instantiate(this.deckPrefab);
+            this.container.addChild(node);
+            var ctrl = node.getComponent(DeckItem);
+            ctrl.setData(deckData, index, this.onDeckClicked.bind(this));
+          }
+        };
+
+        _proto.onDeckClicked = function onDeckClicked() {
+          //TODO: implement pass deck id
+          this.questionPayload['deckId'] = '0';
+          this.app.openPage(PageName.QuestionPage, this.questionPayload);
+        };
+
+        _proto.showTransition = function showTransition() {
+          Tween.stopAllByTarget(this.uiOpacity);
+          this.node.active = true;
+          tween(this.uiOpacity).set({
+            opacity: 0
+          }).to(0.3, {
+            opacity: 255
+          }).start();
+        };
+
+        _proto.hideTransition = function hideTransition() {
+          var _this2 = this;
+
+          Tween.stopAllByTarget(this.uiOpacity);
+          tween(this.uiOpacity).set({
+            opacity: 255
+          }).to(0.3, {
+            opacity: 0
+          }).call(function () {
+            _this2.node.active = false;
+          }).start();
+        };
+
+        _proto.updatePageSize = function updatePageSize(scalerX, scalerY) {};
+
+        _proto.onBack = function onBack() {
+          this.app.openPage(PageName.SelectDifficultyPage);
+        };
+
+        return SelectDeckPage;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "uiOpacity", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "deckPrefab", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "container", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/SelectDifficultyPage.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GameConst.ts'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, find, Tween, tween, Component, Constants;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      UIOpacity = module.UIOpacity;
+      find = module.find;
+      Tween = module.Tween;
+      tween = module.tween;
+      Component = module.Component;
+    }, function (module) {
+      Constants = module.Constants;
+    }],
+    execute: function () {
+      var _dec, _dec2, _class, _class2, _descriptor;
+
+      cclegacy._RF.push({}, "b43b6/bpkZHErO+LXCR99tK", "SelectDifficultyPage", undefined);
+
+      var PageName = Constants.PageName;
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var SelectDifficultyPage = exports('SelectDifficultyPage', (_dec = ccclass('SelectDifficultyPage'), _dec2 = property(UIOpacity), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(SelectDifficultyPage, _Component);
+
+        function SelectDifficultyPage() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "uiOpacity", _descriptor, _assertThisInitialized(_this));
+
+          _this.app = void 0;
+          return _this;
+        }
+
+        var _proto = SelectDifficultyPage.prototype;
+
+        _proto.onLoad = function onLoad() {
+          this.app = find('App').getComponent('App');
+        };
+
+        _proto.onShow = function onShow() {};
+
+        _proto.onHide = function onHide() {};
+
+        _proto.setPayload = function setPayload(data) {};
+
+        _proto.onSelectDificulty = function onSelectDificulty(event, data) {
+          this.app.openPage(PageName.SelectDeckPage, data);
+        };
+
+        _proto.showTransition = function showTransition() {
+          Tween.stopAllByTarget(this.uiOpacity);
+          this.node.active = true;
+          tween(this.uiOpacity).set({
+            opacity: 0
+          }).to(0.3, {
+            opacity: 255
+          }).start();
+        };
+
+        _proto.hideTransition = function hideTransition() {
+          var _this2 = this;
+
+          Tween.stopAllByTarget(this.uiOpacity);
+          tween(this.uiOpacity).set({
+            opacity: 255
+          }).to(0.3, {
+            opacity: 0
+          }).call(function () {
+            _this2.node.active = false;
+          }).start();
+        };
+
+        _proto.updatePageSize = function updatePageSize(scalerX, scalerY) {};
+
+        _proto.onBack = function onBack() {
+          this.app.openPage(PageName.GameIntroPage);
+        };
+
+        return SelectDifficultyPage;
+      }(Component), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "uiOpacity", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/SelectGamePage.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GameItem.ts', './GameConst.ts', './CommonPopup.ts'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, Prefab, Node, find, instantiate, Tween, tween, Component, GameItem, Constants, CommonPopupData;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      UIOpacity = module.UIOpacity;
+      Prefab = module.Prefab;
+      Node = module.Node;
+      find = module.find;
+      instantiate = module.instantiate;
+      Tween = module.Tween;
+      tween = module.tween;
+      Component = module.Component;
+    }, function (module) {
+      GameItem = module.GameItem;
+    }, function (module) {
+      Constants = module.Constants;
+    }, function (module) {
+      CommonPopupData = module.CommonPopupData;
+    }],
+    execute: function () {
+      var _dec, _dec2, _dec3, _dec4, _class, _class2, _descriptor, _descriptor2, _descriptor3;
+
+      cclegacy._RF.push({}, "32c7c1/Kx9Dhb/NlaSM4PXZ", "SelectGamePage", undefined);
+
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var PageName = Constants.PageName;
+      var SelectGamePage = exports('SelectGamePage', (_dec = ccclass('SelectGamePage'), _dec2 = property(UIOpacity), _dec3 = property(Prefab), _dec4 = property({
+        type: Node
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(SelectGamePage, _Component);
+
+        function SelectGamePage() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "uiOpacity", _descriptor, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "itemPrefab", _descriptor2, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "container", _descriptor3, _assertThisInitialized(_this));
+
+          _this.items = [];
+          _this.app = void 0;
+          return _this;
+        }
+
+        var _proto = SelectGamePage.prototype;
+
+        _proto.onLoad = function onLoad() {
+          this.app = find('App').getComponent('App');
+        };
+
+        _proto.onShow = function onShow() {};
+
+        _proto.onHide = function onHide() {};
+
+        _proto.setPayload = function setPayload(data) {};
+
+        _proto.start = function start() {
+          for (var index = 0; index < 1; index++) {
+            var node = instantiate(this.itemPrefab);
+            this.container.addChild(node);
+            var ctrl = node.getComponent(GameItem);
+            ctrl.setInfo(index, null, this.onItemClicked.bind(this));
+            ctrl.showDetail(index === 0, false);
+            this.items.push(ctrl);
+          }
+
+          this.showInputNamePrompt();
+        };
+
+        _proto.showInputNamePrompt = function showInputNamePrompt() {
+          var _this2 = this;
+
+          var commonPopupData = new CommonPopupData();
+          commonPopupData.Title = 'Input your name';
+          commonPopupData.HasEditBox = true;
+          commonPopupData.EditBoxPlaceHolderText = 'Enter player name...';
+          commonPopupData.ButtonYesText = 'OKAY';
+
+          commonPopupData.ButtonYesCallback = function (name) {
+            _this2.app.GameData.setPlayerName(name);
+          };
+
+          this.app.openPopup(commonPopupData);
+        };
+
+        _proto.onItemClicked = function onItemClicked(itemIndex, hasJoinGame, gameId) {
+          if (hasJoinGame) {
+            this.app.openPage(PageName.GameInfoPage, gameId);
+            return;
+          }
+
+          for (var index = 0; index < this.items.length; index++) {
+            this.items[index].showDetail(index === itemIndex, true);
+          }
+        };
+
+        _proto.showTransition = function showTransition() {
+          Tween.stopAllByTarget(this.uiOpacity);
+          this.node.active = true;
+          tween(this.uiOpacity).set({
+            opacity: 0
+          }).to(0.3, {
+            opacity: 255
+          }).start();
+        };
+
+        _proto.hideTransition = function hideTransition() {
+          var _this3 = this;
+
+          Tween.stopAllByTarget(this.uiOpacity);
+          tween(this.uiOpacity).set({
+            opacity: 255
+          }).to(0.3, {
+            opacity: 0
+          }).call(function () {
+            _this3.node.active = false;
+          }).start();
+        };
+
+        _proto.updatePageSize = function updatePageSize(scalerX, scalerY) {};
+
+        _proto.onBack = function onBack() {};
+
+        return SelectGamePage;
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "uiOpacity", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "itemPrefab", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "container", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/ThemeManagement.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './ColorPalette.ts'], function (exports) {
+  'use strict';
+
+  var _applyDecoratedDescriptor, _inheritsLoose, _createForOfIteratorHelperLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Node, Component, ColorPalette;
+
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _createForOfIteratorHelperLoose = module.createForOfIteratorHelperLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      Node = module.Node;
+      Component = module.Component;
+    }, function (module) {
+      ColorPalette = module.ColorPalette;
+    }],
+    execute: function () {
+      var _dec, _dec2, _class, _class2, _descriptor;
+
+      cclegacy._RF.push({}, "89ac7byHXNHW5AZytYO73FD", "ThemeManagement", undefined);
+
+      var ccclass = _decorator.ccclass,
+          property = _decorator.property;
+      var ThemeManagement = exports('ThemeManagement', (_dec = ccclass('ThemeManagement'), _dec2 = property([Node]), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(ThemeManagement, _Component);
+
+        function ThemeManagement() {
+          var _this;
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+
+          _initializerDefineProperty(_this, "targets", _descriptor, _assertThisInitialized(_this));
+
+          return _this;
+        }
+
+        var _proto = ThemeManagement.prototype;
+
+        _proto.changeTheme = function changeTheme(themeId) {
+          for (var index = 0; index < this.targets.length; index++) {
+            var target = this.targets[index];
+            this.iterateNodeHierarchy(target, themeId);
+          }
+        };
+
+        _proto.iterateNodeHierarchy = function iterateNodeHierarchy(target, themeId) {
+          var children = target.children;
+          this.updateTarget(target, themeId);
+
+          for (var _iterator = _createForOfIteratorHelperLoose(children), _step; !(_step = _iterator()).done;) {
+            var child = _step.value;
+            this.iterateNodeHierarchy(child, themeId);
+          }
+        };
+
+        _proto.updateTarget = function updateTarget(target, themeId) {
+          var colorPalette = target.getComponent(ColorPalette);
+          if (colorPalette === null) return;
+          colorPalette.updateColor(themeId);
+        };
+
+        return ThemeManagement;
+      }(Component), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "targets", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return [];
+        }
+      }), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
 
 (function(r) {
   r('virtual:///prerequisite-imports/main', 'chunks:///_virtual/main'); 
