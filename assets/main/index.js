@@ -1721,7 +1721,7 @@ System.register("chunks:///_virtual/GameData.ts", ['cc'], function (exports) {
 System.register("chunks:///_virtual/GameInfoPage.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GameConst.ts'], function (exports) {
   'use strict';
 
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, find, Tween, tween, Component, Constants;
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, LabelComponent, find, Tween, tween, Component, Constants;
 
   return {
     setters: [function (module) {
@@ -1733,6 +1733,7 @@ System.register("chunks:///_virtual/GameInfoPage.ts", ['./rollupPluginModLoBabel
       cclegacy = module.cclegacy;
       _decorator = module._decorator;
       UIOpacity = module.UIOpacity;
+      LabelComponent = module.LabelComponent;
       find = module.find;
       Tween = module.Tween;
       tween = module.tween;
@@ -1741,14 +1742,22 @@ System.register("chunks:///_virtual/GameInfoPage.ts", ['./rollupPluginModLoBabel
       Constants = module.Constants;
     }],
     execute: function () {
-      var _dec, _dec2, _class, _class2, _descriptor;
+      var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
 
       cclegacy._RF.push({}, "e31ee8sJSxPzqnkM/F9I6so", "GameInfoPage", undefined);
 
       var PageName = Constants.PageName;
       var ccclass = _decorator.ccclass,
           property = _decorator.property;
-      var GameInfoPage = exports('GameInfoPage', (_dec = ccclass('GameInfoPage'), _dec2 = property(UIOpacity), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+      var GameInfoPage = exports('GameInfoPage', (_dec = ccclass('GameInfoPage'), _dec2 = property(UIOpacity), _dec3 = property({
+        type: LabelComponent
+      }), _dec4 = property({
+        type: LabelComponent
+      }), _dec5 = property({
+        type: LabelComponent
+      }), _dec6 = property({
+        type: LabelComponent
+      }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
         _inheritsLoose(GameInfoPage, _Component);
 
         function GameInfoPage() {
@@ -1762,8 +1771,16 @@ System.register("chunks:///_virtual/GameInfoPage.ts", ['./rollupPluginModLoBabel
 
           _initializerDefineProperty(_this, "uiOpacity", _descriptor, _assertThisInitialized(_this));
 
+          _initializerDefineProperty(_this, "lbGameName", _descriptor2, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbDuration", _descriptor3, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbPlayerCount", _descriptor4, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "lbGuide", _descriptor5, _assertThisInitialized(_this));
+
           _this.app = void 0;
-          _this.gameId = void 0;
+          _this.gameInfo = void 0;
           return _this;
         }
 
@@ -1773,12 +1790,17 @@ System.register("chunks:///_virtual/GameInfoPage.ts", ['./rollupPluginModLoBabel
           this.app = find('App').getComponent('App');
         };
 
-        _proto.onShow = function onShow() {};
+        _proto.onShow = function onShow() {
+          this.lbGameName.string = this.gameInfo.name;
+          this.lbDuration.string = "" + this.gameInfo.duration;
+          this.lbPlayerCount.string = this.gameInfo.playerCount + "~";
+          this.lbGuide.string = this.gameInfo.guide;
+        };
 
         _proto.onHide = function onHide() {};
 
         _proto.setPayload = function setPayload(data) {
-          this.gameId = data;
+          this.gameInfo = data;
         };
 
         _proto.start = function start() {};
@@ -1792,7 +1814,8 @@ System.register("chunks:///_virtual/GameInfoPage.ts", ['./rollupPluginModLoBabel
         };
 
         _proto.onPassAndPLay = function onPassAndPLay() {
-          this.app.openPage(PageName.PassAndPlayPage, this.gameId);
+          if (this.gameInfo.isSkipAddPlayer) return this.app.openPage(PageName.GameIntroPage, this.gameInfo);
+          this.app.openPage(PageName.PassAndPlayPage, this.gameInfo);
         };
 
         _proto.showTransition = function showTransition() {
@@ -1825,14 +1848,42 @@ System.register("chunks:///_virtual/GameInfoPage.ts", ['./rollupPluginModLoBabel
         };
 
         return GameInfoPage;
-      }(Component), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "uiOpacity", [_dec2], {
+      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "uiOpacity", [_dec2], {
         configurable: true,
         enumerable: true,
         writable: true,
         initializer: function initializer() {
           return null;
         }
-      }), _class2)) || _class));
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "lbGameName", [_dec3], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, "lbDuration", [_dec4], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "lbPlayerCount", [_dec5], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, "lbGuide", [_dec6], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      })), _class2)) || _class));
 
       cclegacy._RF.pop();
     }
@@ -2042,15 +2093,8 @@ System.register("chunks:///_virtual/GameItem.ts", ['./rollupPluginModLoBabelHelp
         _proto.setInfo = function setInfo(index, info, callback) {
           if (callback === void 0) {
             callback = null;
-          } //TODO: load real data
+          }
 
-
-          info = {
-            id: "doanddrink" + index,
-            name: "DO OR DRINK " + index,
-            description: 'Do the dare on the card or take a drink. If you do the dare, you get to take the card',
-            shortDescription: 'Do the dare on the card or take a drink'
-          };
           this.data = info;
           this.isShowDetail = false;
           this.callback = callback;
@@ -2098,7 +2142,7 @@ System.register("chunks:///_virtual/GameItem.ts", ['./rollupPluginModLoBabelHelp
         };
 
         _proto.onClicked = function onClicked() {
-          this.callback && this.callback(this.index, this.isShowDetail, this.data.id);
+          this.callback && this.callback(this.index, this.isShowDetail, this.data);
         };
 
         return GameItem;
@@ -2289,11 +2333,11 @@ System.register("chunks:///_virtual/JoinRoomPage.ts", ['./rollupPluginModLoBabel
   };
 });
 
-System.register("chunks:///_virtual/main", ['./debug-view-runtime-control.ts', './Dropdown.ts', './DropdownOption.ts', './App.ts', './DeckController.ts', './GameConst.ts', './GameData.ts', './GameItem.ts', './SelectGamePage.ts', './CreateRoomPage.ts', './GameInfoPage.ts', './GameIntroPage.ts', './JoinRoomPage.ts', './BotPlayerItem.ts', './PassAndPlayPage.ts', './CommonPopup.ts', './QuestionPage.ts', './DeckItem.ts', './SelectDeckPage.ts', './SelectDifficultyPage.ts', './ColorPalette.ts', './DebugView.ts', './ThemeManagement.ts'], function () {
+System.register("chunks:///_virtual/main", ['./debug-view-runtime-control.ts', './Dropdown.ts', './DropdownOption.ts', './App.ts', './DeckController.ts', './GameConst.ts', './GameData.ts', './SyncData.ts', './GameItem.ts', './SelectGamePage.ts', './CreateRoomPage.ts', './GameInfoPage.ts', './GameIntroPage.ts', './JoinRoomPage.ts', './BotPlayerItem.ts', './PassAndPlayPage.ts', './CommonPopup.ts', './QuestionPage.ts', './DeckItem.ts', './SelectDeckPage.ts', './SelectDifficultyPage.ts', './ColorPalette.ts', './DebugView.ts', './ThemeManagement.ts'], function () {
   'use strict';
 
   return {
-    setters: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+    setters: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
     execute: function () {}
   };
 });
@@ -2902,7 +2946,7 @@ System.register("chunks:///_virtual/SelectDifficultyPage.ts", ['./rollupPluginMo
 System.register("chunks:///_virtual/SelectGamePage.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './GameItem.ts', './GameConst.ts', './CommonPopup.ts'], function (exports) {
   'use strict';
 
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, Prefab, Node, find, instantiate, Tween, tween, Component, GameItem, Constants, CommonPopupData;
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, UIOpacity, Prefab, Node, JsonAsset, find, instantiate, Tween, tween, Component, GameItem, Constants, CommonPopupData;
 
   return {
     setters: [function (module) {
@@ -2916,6 +2960,7 @@ System.register("chunks:///_virtual/SelectGamePage.ts", ['./rollupPluginModLoBab
       UIOpacity = module.UIOpacity;
       Prefab = module.Prefab;
       Node = module.Node;
+      JsonAsset = module.JsonAsset;
       find = module.find;
       instantiate = module.instantiate;
       Tween = module.Tween;
@@ -2929,7 +2974,7 @@ System.register("chunks:///_virtual/SelectGamePage.ts", ['./rollupPluginModLoBab
       CommonPopupData = module.CommonPopupData;
     }],
     execute: function () {
-      var _dec, _dec2, _dec3, _dec4, _class, _class2, _descriptor, _descriptor2, _descriptor3;
+      var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
       cclegacy._RF.push({}, "32c7c1/Kx9Dhb/NlaSM4PXZ", "SelectGamePage", undefined);
 
@@ -2938,6 +2983,8 @@ System.register("chunks:///_virtual/SelectGamePage.ts", ['./rollupPluginModLoBab
       var PageName = Constants.PageName;
       var SelectGamePage = exports('SelectGamePage', (_dec = ccclass('SelectGamePage'), _dec2 = property(UIOpacity), _dec3 = property(Prefab), _dec4 = property({
         type: Node
+      }), _dec5 = property({
+        type: JsonAsset
       }), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
         _inheritsLoose(SelectGamePage, _Component);
 
@@ -2955,6 +3002,8 @@ System.register("chunks:///_virtual/SelectGamePage.ts", ['./rollupPluginModLoBab
           _initializerDefineProperty(_this, "itemPrefab", _descriptor2, _assertThisInitialized(_this));
 
           _initializerDefineProperty(_this, "container", _descriptor3, _assertThisInitialized(_this));
+
+          _initializerDefineProperty(_this, "gamesJson", _descriptor4, _assertThisInitialized(_this));
 
           _this.items = [];
           _this.app = void 0;
@@ -2974,11 +3023,13 @@ System.register("chunks:///_virtual/SelectGamePage.ts", ['./rollupPluginModLoBab
         _proto.setPayload = function setPayload(data) {};
 
         _proto.start = function start() {
-          for (var index = 0; index < 1; index++) {
+          var games = this.gamesJson.json;
+
+          for (var index = 0; index < games.length; index++) {
             var node = instantiate(this.itemPrefab);
             this.container.addChild(node);
             var ctrl = node.getComponent(GameItem);
-            ctrl.setInfo(index, null, this.onItemClicked.bind(this));
+            ctrl.setInfo(index, games[index], this.onItemClicked.bind(this));
             ctrl.showDetail(index === 0, false);
             this.items.push(ctrl);
           }
@@ -3002,9 +3053,9 @@ System.register("chunks:///_virtual/SelectGamePage.ts", ['./rollupPluginModLoBab
           this.app.openPopup(commonPopupData);
         };
 
-        _proto.onItemClicked = function onItemClicked(itemIndex, hasJoinGame, gameId) {
+        _proto.onItemClicked = function onItemClicked(itemIndex, hasJoinGame, gameInfo) {
           if (hasJoinGame) {
-            this.app.openPage(PageName.GameInfoPage, gameId);
+            this.app.openPage(PageName.GameInfoPage, gameInfo);
             return;
           }
 
@@ -3062,7 +3113,49 @@ System.register("chunks:///_virtual/SelectGamePage.ts", ['./rollupPluginModLoBab
         initializer: function initializer() {
           return null;
         }
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, "gamesJson", [_dec5], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
       })), _class2)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/SyncData.ts", ['cc'], function (exports) {
+  'use strict';
+
+  var cclegacy;
+  return {
+    setters: [function (module) {
+      cclegacy = module.cclegacy;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "8cbc0kK66pJjJhP+j2ZVrYs", "SyncData", undefined); // import * as syncSpreadsheet from 'sync-google-sheet';
+      // const syncSpreadsheet = require('sync-google-sheet');
+      // import { syncSpreadsheet } from 'sync-google-sheet';
+
+
+      var SyncData = exports('SyncData', /*#__PURE__*/function () {
+        function SyncData() {}
+
+        var _proto = SyncData.prototype;
+
+        _proto.fetchData = function fetchData() {// console.log('==>loadStaticData', syncSpreadsheet);
+          // var params = {
+          //     fileId: '1tDyLD2f_P2n9etVESzx-1Z_suSxGtPDu53sHtOkYRJawti0Ms3w6oXPE2_7awtX8', 
+          //     // apiKey: 'XXxxXxXXX_XXxxxXXXxxxXXXXxxXXxxxXXXX',
+          //     // metaTableName: 'meta' // optional
+          // };
+        };
+
+        return SyncData;
+      }());
 
       cclegacy._RF.pop();
     }
