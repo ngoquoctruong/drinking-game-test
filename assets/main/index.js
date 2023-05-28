@@ -98,6 +98,8 @@ System.register("chunks:///_virtual/App.ts", ['./rollupPluginModLoBabelHelpers.j
         var _proto = App.prototype;
 
         _proto.onLoad = function onLoad() {
+          var _this2 = this;
+
           this.IS_DEVELOPMENT = DEBUG;
 
           if (this.IS_DEVELOPMENT) {
@@ -109,9 +111,14 @@ System.register("chunks:///_virtual/App.ts", ['./rollupPluginModLoBabelHelpers.j
 
 
           this.GameData = new GameData();
-          this.DeckController = new DeckController();
-          this.DeckController.addDeck('0', this.questionJson.json);
-          this.screenLocker.active = false;
+          this.screenLocker.active = true;
+          this.DeckController = new DeckController(function () {
+            _this2.screenLocker.active = false; // open default
+
+            _this2.openPage(PageName.SelectGamePage);
+
+            _this2.updatePageSize();
+          });
           view.setResizeCallback(this.updatePageSize.bind(this)); // retrieve original canvas design size
 
           var designResolution = view.getDesignResolutionSize();
@@ -127,10 +134,7 @@ System.register("chunks:///_virtual/App.ts", ['./rollupPluginModLoBabelHelpers.j
           this.pageMap.set(PageName.GameIntroPage, this.pagePrefabs[5]);
           this.pageMap.set(PageName.SelectDifficultyPage, this.pagePrefabs[6]);
           this.pageMap.set(PageName.SelectDeckPage, this.pagePrefabs[7]);
-          this.pageMap.set(PageName.QuestionPage, this.pagePrefabs[8]); // open default
-
-          this.openPage(PageName.SelectGamePage);
-          this.updatePageSize();
+          this.pageMap.set(PageName.QuestionPage, this.pagePrefabs[8]);
         };
 
         _proto.updatePageSize = function updatePageSize() {
@@ -170,11 +174,11 @@ System.register("chunks:///_virtual/App.ts", ['./rollupPluginModLoBabelHelpers.j
         };
 
         _proto.openPopup = function openPopup(data) {
-          var _this2 = this;
+          var _this3 = this;
 
           this.screenLocker.active = true;
           this.popup.show(data, function () {
-            _this2.screenLocker.active = false;
+            _this3.screenLocker.active = false;
           }, true);
         };
 
@@ -1234,27 +1238,60 @@ System.register("chunks:///_virtual/DebugView.ts", ['./rollupPluginModLoBabelHel
   };
 });
 
-System.register("chunks:///_virtual/DeckController.ts", ['cc'], function (exports) {
+System.register("chunks:///_virtual/DeckController.ts", ['cc', './GameConst.ts'], function (exports) {
   'use strict';
 
-  var cclegacy;
+  var cclegacy, Enum, assetManager, Constants;
   return {
     setters: [function (module) {
       cclegacy = module.cclegacy;
+      Enum = module.Enum;
+      assetManager = module.assetManager;
+    }, function (module) {
+      Constants = module.Constants;
     }],
     execute: function () {
       cclegacy._RF.push({}, "fad618c61tHZpd5Y9JgNHdt", "DeckController", undefined);
 
-      var QuestionData = exports('QuestionData', function QuestionData() {
+      var QuestionDataUrl = Constants.QuestionDataUrl;
+      var QuestionData = exports('QuestionData', function QuestionData(type, level, penalty, english, japanese) {
         this.Type = void 0;
         this.Level = void 0;
         this.Penalty = void 0;
         this.English = void 0;
         this.Japanese = void 0;
+        this.Type = type;
+        this.Level = level;
+        this.Penalty = penalty;
+        this.English = english;
+        this.Japanese = japanese;
+      });
+      var QuestionProps = Enum({
+        Type: 0,
+        Level: 1,
+        Penalty: 2,
+        English: 3,
+        Japanese: 4
       });
       var DeckController = exports('DeckController', /*#__PURE__*/function () {
-        function DeckController() {
+        function DeckController(onComplete) {
+          var _this = this;
+
           this.deckMap = {};
+          assetManager.loadRemote(QuestionDataUrl, {
+            ext: '.json'
+          }, function (err, data) {
+            if (!!err) {
+              onComplete && onComplete();
+              return console.error('Cant fetch question data');
+            }
+
+            var asset = data;
+
+            _this.addDeck('0', asset.json);
+
+            onComplete && onComplete();
+          });
         }
 
         var _proto = DeckController.prototype;
@@ -1270,8 +1307,10 @@ System.register("chunks:///_virtual/DeckController.ts", ['cc'], function (export
 
           for (var i = 0; i < questions.length; i++) {
             var question = questions[i];
-            if (!deck["" + question.Level]) deck["" + question.Level] = [];
-            deck["" + question.Level].push(question);
+            if (typeof question[QuestionProps.Level] !== 'number') continue;
+            if (!deck["" + question[QuestionProps.Level]]) deck["" + question[QuestionProps.Level]] = [];
+            var questionData = new QuestionData(question[QuestionProps.Type], question[QuestionProps.Level], question[QuestionProps.Penalty], question[QuestionProps.English], question[QuestionProps.Japanese]);
+            deck["" + question[QuestionProps.Level]].push(questionData);
           }
 
           return true;
@@ -1661,7 +1700,8 @@ System.register("chunks:///_virtual/GameConst.ts", ['cc'], function (exports) {
             IntroBgColor: '#F7F4ED',
             DifficultyBgColor: '#F7F4ED'
           }
-        }
+        },
+        QuestionDataUrl: 'https://script.googleusercontent.com/macros/echo?user_content_key=qTV0UzAt5oxxh_mchwaMyMjk3Did7yVAIF4clTwwNWJhGeDsAVyjk2qdP16-EiDsmGvK8hJr097-QSsgzzAXNfrEqpfGBLG8m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKYsm5Lbn7KuJK9RTdPm3xFOpOQNhD2k-qLZcaAJUI-NDysB1nAlYMq7An3jZBhANJac2Az_aSPs&lib=MZPvyXqN9C48nF0FtLxjbbELK4b4b5bYL'
       });
 
       cclegacy._RF.pop();
@@ -2333,11 +2373,11 @@ System.register("chunks:///_virtual/JoinRoomPage.ts", ['./rollupPluginModLoBabel
   };
 });
 
-System.register("chunks:///_virtual/main", ['./debug-view-runtime-control.ts', './Dropdown.ts', './DropdownOption.ts', './App.ts', './DeckController.ts', './GameConst.ts', './GameData.ts', './SyncData.ts', './GameItem.ts', './SelectGamePage.ts', './CreateRoomPage.ts', './GameInfoPage.ts', './GameIntroPage.ts', './JoinRoomPage.ts', './BotPlayerItem.ts', './PassAndPlayPage.ts', './CommonPopup.ts', './QuestionPage.ts', './DeckItem.ts', './SelectDeckPage.ts', './SelectDifficultyPage.ts', './ColorPalette.ts', './DebugView.ts', './ThemeManagement.ts'], function () {
+System.register("chunks:///_virtual/main", ['./debug-view-runtime-control.ts', './Dropdown.ts', './DropdownOption.ts', './App.ts', './DeckController.ts', './GameConst.ts', './GameData.ts', './GameItem.ts', './SelectGamePage.ts', './CreateRoomPage.ts', './GameInfoPage.ts', './GameIntroPage.ts', './JoinRoomPage.ts', './BotPlayerItem.ts', './PassAndPlayPage.ts', './CommonPopup.ts', './QuestionPage.ts', './DeckItem.ts', './SelectDeckPage.ts', './SelectDifficultyPage.ts', './ColorPalette.ts', './DebugView.ts', './ThemeManagement.ts'], function () {
   'use strict';
 
   return {
-    setters: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+    setters: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
     execute: function () {}
   };
 });
@@ -3121,41 +3161,6 @@ System.register("chunks:///_virtual/SelectGamePage.ts", ['./rollupPluginModLoBab
           return null;
         }
       })), _class2)) || _class));
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///_virtual/SyncData.ts", ['cc'], function (exports) {
-  'use strict';
-
-  var cclegacy;
-  return {
-    setters: [function (module) {
-      cclegacy = module.cclegacy;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "8cbc0kK66pJjJhP+j2ZVrYs", "SyncData", undefined); // import * as syncSpreadsheet from 'sync-google-sheet';
-      // const syncSpreadsheet = require('sync-google-sheet');
-      // import { syncSpreadsheet } from 'sync-google-sheet';
-
-
-      var SyncData = exports('SyncData', /*#__PURE__*/function () {
-        function SyncData() {}
-
-        var _proto = SyncData.prototype;
-
-        _proto.fetchData = function fetchData() {// console.log('==>loadStaticData', syncSpreadsheet);
-          // var params = {
-          //     fileId: '1tDyLD2f_P2n9etVESzx-1Z_suSxGtPDu53sHtOkYRJawti0Ms3w6oXPE2_7awtX8', 
-          //     // apiKey: 'XXxxXxXXX_XXxxxXXXxxxXXXXxxXXxxxXXXX',
-          //     // metaTableName: 'meta' // optional
-          // };
-        };
-
-        return SyncData;
-      }());
 
       cclegacy._RF.pop();
     }
